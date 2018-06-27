@@ -39,6 +39,8 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         self.automaticallyAdjustsScrollViewInsets = false;
+        
+        
 
         
     }

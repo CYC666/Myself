@@ -27,6 +27,10 @@
 		1711588920E3796700013C31 /* ZoneListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711588720E3796700013C31 /* ZoneListCell.swift */; };
 		1711588A20E3796700013C31 /* ZoneListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1711588820E3796700013C31 /* ZoneListCell.xib */; };
 		1711588D20E39AA400013C31 /* SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711588C20E39AA400013C31 /* SendController.swift */; };
+		1711589020E3DF4100013C31 /* SendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711588E20E3DF4100013C31 /* SendCell.swift */; };
+		1711589120E3DF4100013C31 /* SendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1711588F20E3DF4100013C31 /* SendCell.xib */; };
+		1711589320E3E7A600013C31 /* SendBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711589220E3E7A600013C31 /* SendBottomView.swift */; };
+		1711589520E3E7AD00013C31 /* SendBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1711589420E3E7AD00013C31 /* SendBottomView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		1711588720E3796700013C31 /* ZoneListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListCell.swift; sourceTree = "<group>"; };
 		1711588820E3796700013C31 /* ZoneListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoneListCell.xib; sourceTree = "<group>"; };
 		1711588C20E39AA400013C31 /* SendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendController.swift; sourceTree = "<group>"; };
+		1711588E20E3DF4100013C31 /* SendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCell.swift; sourceTree = "<group>"; };
+		1711588F20E3DF4100013C31 /* SendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendCell.xib; sourceTree = "<group>"; };
+		1711589220E3E7A600013C31 /* SendBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBottomView.swift; sourceTree = "<group>"; };
+		1711589420E3E7AD00013C31 /* SendBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendBottomView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,10 @@
 			isa = PBXGroup;
 			children = (
 				1711588C20E39AA400013C31 /* SendController.swift */,
+				1711588E20E3DF4100013C31 /* SendCell.swift */,
+				1711588F20E3DF4100013C31 /* SendCell.xib */,
+				1711589220E3E7A600013C31 /* SendBottomView.swift */,
+				1711589420E3E7AD00013C31 /* SendBottomView.xib */,
 			);
 			path = "新建动态";
 			sourceTree = "<group>";
@@ -215,8 +227,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1711588020E36CD100013C31 /* Info.plist in Resources */,
+				1711589520E3E7AD00013C31 /* SendBottomView.xib in Resources */,
 				1711586020E32FE700013C31 /* LaunchScreen.storyboard in Resources */,
 				1711585D20E32FE700013C31 /* Assets.xcassets in Resources */,
+				1711589120E3DF4100013C31 /* SendCell.xib in Resources */,
 				1711588A20E3796700013C31 /* ZoneListCell.xib in Resources */,
 				1711585820E32FE700013C31 /* Main.storyboard in Resources */,
 			);
@@ -232,6 +246,8 @@
 				1711585B20E32FE700013C31 /* Myself.xcdatamodeld in Sources */,
 				1711585520E32FE700013C31 /* ViewController.swift in Sources */,
 				1711585320E32FE700013C31 /* AppDelegate.swift in Sources */,
+				1711589320E3E7A600013C31 /* SendBottomView.swift in Sources */,
+				1711589020E3DF4100013C31 /* SendCell.swift in Sources */,
 				1711588620E36DB600013C31 /* SQLiteManager.swift in Sources */,
 				1711587D20E36CD100013C31 /* FMDatabase.m in Sources */,
 				1711588320E36D0300013C31 /* MainController.swift in Sources */,
