@@ -13,6 +13,9 @@
 		1711585B20E32FE700013C31 /* Myself.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1711585920E32FE700013C31 /* Myself.xcdatamodeld */; };
 		1711585D20E32FE700013C31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1711585C20E32FE700013C31 /* Assets.xcassets */; };
 		1711586020E32FE700013C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1711585E20E32FE700013C31 /* LaunchScreen.storyboard */; };
+		1711586820E3349800013C31 /* pch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711586720E3349800013C31 /* pch.swift */; };
+		1711586A20E337A300013C31 /* BaseNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711586920E337A300013C31 /* BaseNavController.swift */; };
+		1711586C20E3400400013C31 /* GuideController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711586B20E3400400013C31 /* GuideController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		1711585C20E32FE700013C31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1711585F20E32FE700013C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1711586120E32FE800013C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1711586720E3349800013C31 /* pch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pch.swift; sourceTree = "<group>"; };
+		1711586920E337A300013C31 /* BaseNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavController.swift; sourceTree = "<group>"; };
+		1711586B20E3400400013C31 /* GuideController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,9 @@
 			children = (
 				1711585220E32FE700013C31 /* AppDelegate.swift */,
 				1711585420E32FE700013C31 /* ViewController.swift */,
+				1711586920E337A300013C31 /* BaseNavController.swift */,
+				1711586B20E3400400013C31 /* GuideController.swift */,
+				1711586720E3349800013C31 /* pch.swift */,
 				1711585620E32FE700013C31 /* Main.storyboard */,
 				1711585C20E32FE700013C31 /* Assets.xcassets */,
 				1711585E20E32FE700013C31 /* LaunchScreen.storyboard */,
@@ -99,7 +108,7 @@
 				TargetAttributes = {
 					1711584E20E32FE700013C31 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -142,6 +151,9 @@
 				1711585B20E32FE700013C31 /* Myself.xcdatamodeld in Sources */,
 				1711585520E32FE700013C31 /* ViewController.swift in Sources */,
 				1711585320E32FE700013C31 /* AppDelegate.swift in Sources */,
+				1711586820E3349800013C31 /* pch.swift in Sources */,
+				1711586C20E3400400013C31 /* GuideController.swift in Sources */,
+				1711586A20E337A300013C31 /* BaseNavController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,14 +290,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WU3DD344F3;
 				INFOPLIST_FILE = Myself/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cyc.myself.Myself;
+				PRODUCT_BUNDLE_IDENTIFIER = cyc.myself;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "266126b4-86c8-4346-a133-4be3fcdbd1bf";
+				PROVISIONING_PROFILE_SPECIFIER = Myself_ADHoc;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -293,14 +309,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WU3DD344F3;
 				INFOPLIST_FILE = Myself/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cyc.myself.Myself;
+				PRODUCT_BUNDLE_IDENTIFIER = cyc.myself;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5af76e27-1817-492a-9fd6-09019522efc9";
+				PROVISIONING_PROFILE_SPECIFIER = Myself_Development;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
