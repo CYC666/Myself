@@ -33,6 +33,12 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         listTableView.delegate = self
         listTableView.dataSource = self
         view.addSubview(listTableView)
+        
+        if #available(iOS 11.0, *) {
+            listTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.never
+        }
+        
+        self.automaticallyAdjustsScrollViewInsets = false;
 
         
     }
