@@ -46,7 +46,7 @@ class GuideController: UIViewController {
             
         }) { (true) in
             
-            let nav = BaseNavController.init(rootViewController: ViewController())
+            let nav = BaseNavController.init(rootViewController: MainController())
             self.present(nav, animated: false, completion: nil)
             
         }
