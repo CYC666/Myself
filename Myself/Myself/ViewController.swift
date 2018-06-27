@@ -15,10 +15,19 @@ class ViewController: UIViewController {
         
         self.title = "Myself"
         
+        self.view.backgroundColor = UIColor.white
         
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

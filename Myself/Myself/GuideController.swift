@@ -39,10 +39,22 @@ class GuideController: UIViewController {
             
         }
         
-        
+        UIView.animate(withDuration: 1, animations: {
+            
+            self.guideImageView.transform = CGAffineTransform.init(scaleX: 3, y: 3)
+            self.guideImageView.alpha = 0
+            
+        }) { (true) in
+            
+            let nav = BaseNavController.init(rootViewController: ViewController())
+            self.present(nav, animated: false, completion: nil)
+            
+        }
         
         
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
