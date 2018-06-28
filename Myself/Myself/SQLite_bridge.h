@@ -9,6 +9,6 @@
 #ifndef SQLite_bridge_h
 #define SQLite_bridge_h
 
-#import "FMDB.h"
+
 
 #endif /* SQLite_bridge_h */

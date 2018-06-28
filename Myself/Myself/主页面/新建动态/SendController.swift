@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -52,6 +53,8 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyBoardHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
+        
+        
     }
     // MARK:======================================按钮响应========================================
     
@@ -60,6 +63,11 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         UIApplication.shared.keyWindow?.endEditing(true)
         
+        let result : [NSManagedObject] = Tool.searchCoredate("Zone")
+        
+        let zone : NSManagedObject = result.first!
+        NSLog(zone.value(forKey: "content") as! String)
+        
     }
     
     // MARK:发送
@@ -67,7 +75,19 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         UIApplication.shared.keyWindow?.endEditing(true)
         
+        let cell : SendCell = listTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SendCell
+        
+        // 必须要有文字
+        if cell.textView.text.elementsEqual("") {
+            return
+        }
+        
+
+        
+        
     }
+
+    
     
     // MARK:======================================代理方法========================================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
