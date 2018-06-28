@@ -47,20 +47,22 @@ class Tool: NSObject {
     ///   - entityName: 表名
     ///   - nickName: 昵称
     ///   - headPath: 头像路径
-    ///   - content: 内容
     ///   - creatDate: 创建时间
+    ///   - content: 内容
+    ///   - imagesPath: 图片路径拼接
     ///   - prise: 点赞数
     ///   - comment: 评论数
-    ///   - imagesPath: 图片路径拼接
+    ///   - tips: 标签
     /// - Returns: 是否插入成功
     class func insertCoreData(_ entityName : String,
-                        _ nickName : String,
-                        _ headPath : String,
-                        _ content : String,
-                        _ creatDate : String,
-                        _ prise : String,
-                        _ comment : String,
-                        _ imagesPath : String) -> Bool {
+                              _ nickName : String,
+                              _ headPath : String,
+                              _ creatDate : String,
+                              _ content : String,
+                              _ imagesPath : String,
+                              _ prise : String,
+                              _ comment : String,
+                              _ tips : String) -> Bool {
         
         // 步骤一：获取总代理和托管对象总管
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -80,6 +82,7 @@ class Tool: NSObject {
         zone.setValue(prise, forKey: "prise")
         zone.setValue(comment, forKey: "comment")
         zone.setValue(imagesPath, forKey: "imagesPath")
+        zone.setValue(tips, forKey: "tips")
         
         // 步骤四：保存entity到托管对象中。如果保存失败，进行处理
         do {

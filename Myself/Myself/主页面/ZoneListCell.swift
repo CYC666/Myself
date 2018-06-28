@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ZoneListCell: UITableViewCell {
     
@@ -50,6 +51,156 @@ class ZoneListCell: UITableViewCell {
     @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     
+    // 数据
+    var _zoneModel : NSManagedObject?
+    var zoneModel : NSManagedObject? {
+        
+        set {
+            _zoneModel = newValue
+            
+            // 昵称
+            if let nickName = _zoneModel?.value(forKey: "nickName") {
+                nameLabel.text = nickName as? String
+            } else {
+                nameLabel.text = ""
+            }
+            
+            // 头像
+            if let headPath = _zoneModel?.value(forKey: "headPath") {
+                headImage.image = UIImage.init(named: headPath as! String)
+            } else {
+                headImage.image = nil
+            }
+            
+            // 日期
+            if let creatDate = _zoneModel?.value(forKey: "creatDate") {
+                
+                // 时间戳转换成日期
+                let timeStamp = NSInteger(creatDate as! String)
+                let timeInterval:TimeInterval = TimeInterval(timeStamp!)
+                let date = Date(timeIntervalSince1970: timeInterval)
+                let dformatter = DateFormatter()
+                dformatter.dateFormat = "yyyy年MM月dd日 HH:mm:ss"
+                
+                timeLabel.text = (dformatter.string(from: date))
+            } else {
+                timeLabel.text = ""
+            }
+            
+            // 关注
+            followButton.isHidden = true
+            
+            
+            // 内容
+            if let content = _zoneModel?.value(forKey: "content") {
+                contentLabel.text = content as? String
+            } else {
+                contentLabel.text = ""
+            }
+            
+            // 图片
+            if let imagesPath = _zoneModel?.value(forKey: "imagesPath") {
+                
+                let images : [String] = (imagesPath as! String).components(separatedBy: "|")
+                
+                if images.count > 0 {
+                    
+                    imageViewsHeight.constant = 0
+                    
+                } else {
+                    imageViewsHeight.constant = 0
+                }
+                
+                
+            } else {
+                imageViewsHeight.constant = 0
+            }
+            
+            // 标签
+            if let tips = _zoneModel?.value(forKey: "tips") {
+                
+                let tipList : [String] = (tips as! String).components(separatedBy: "|")
+                
+                if tipList.count > 0 && !tipList[0].elementsEqual(""){
+                    
+                    tipButton1.setTitle("  " + tipList[0] + "  ", for: UIControlState.normal)
+                    tipButton1.isHidden = false
+                    tipViewsHeight.constant = 40
+                } else {
+                    tipButton1.isHidden = true
+                    tipViewsHeight.constant = 0
+                }
+                
+                if tipList.count > 1  && !tipList[1].elementsEqual("") {
+                    
+                    tipButton2.setTitle("  " + tipList[1] + "  ", for: UIControlState.normal)
+                    tipButton2.isHidden = false
+                } else {
+                    tipButton2.isHidden = true
+                }
+                
+                if tipList.count > 2  && !tipList[2].elementsEqual("") {
+                    
+                    tipButton3.setTitle("  " + tipList[2] + "  ", for: UIControlState.normal)
+                    tipButton3.isHidden = false
+                } else {
+                    tipButton3.isHidden = true
+                }
+                
+                
+                
+                
+            } else {
+                tipButton1.isHidden = true
+                tipButton2.isHidden = true
+                tipButton3.isHidden = true
+                tipViewsHeight.constant = 0
+            }
+            
+            // 点赞
+            if let prise = _zoneModel?.value(forKey: "prise") {
+                
+                if (prise as! String).elementsEqual("") || (prise as! String).elementsEqual("0") {
+                    priseLabel.text = ""
+                    priseImage.image = UIImage.init(named: "点赞")
+                } else {
+                    priseLabel.text = prise as? String
+                    priseImage.image = UIImage.init(named: "点赞2")
+                }
+                
+                
+            } else {
+                priseLabel.text = ""
+                priseImage.image = UIImage.init(named: "点赞")
+            }
+            
+            // 评论
+            if let comment = _zoneModel?.value(forKey: "comment") {
+                
+                if (comment as! String).elementsEqual("") || (comment as! String).elementsEqual("0") {
+                    commentLabel.text = ""
+                    commentImage.image = UIImage.init(named: "评论")
+                } else {
+                    commentLabel.text = comment as? String
+                    commentImage.image = UIImage.init(named: "评论2")
+                }
+                
+                
+            } else {
+                commentLabel.text = ""
+                commentImage.image = UIImage.init(named: "评论")
+            }
+            
+        }
+        
+        get {
+            return _zoneModel
+        }
+        
+        
+    }
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -79,28 +230,12 @@ class ZoneListCell: UITableViewCell {
     // MARK:按钮响应
     @objc func priseButtonAction(_ button : UIButton) {
         
-        UIView.animate(withDuration: 0.1, animations: {
-            
-            self.priseImage.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
-            
-        }) { (true) in
-            
-            UIView.animate(withDuration: 0.1, animations: {
-                
-                self.priseImage.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-                
-            }) { (true) in
-                
-                self.priseImage.image = UIImage.init(named: "点赞2")
-                
-            }
-            
-        }
+        
         
     }
     
     
-    
+
     
     
     

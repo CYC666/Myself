@@ -8,8 +8,9 @@
         <attribute name="imagesPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prise" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Zone" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Zone" positionX="-63" positionY="-18" width="128" height="165"/>
     </elements>
 </model>

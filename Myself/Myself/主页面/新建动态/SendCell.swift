@@ -25,7 +25,38 @@ class SendCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var tipButton3: UIButton!
     
     
-    
+    var _tipList : [String] = [String]()
+    var tipList : [String] {
+        
+        set {
+            _tipList = newValue
+            
+            if _tipList.count > 0 {
+                tipButton1.setTitle(_tipList[0], for: UIControlState.normal)
+                tipButton1.isHidden = false
+            } else {
+                tipButton1.isHidden = true
+            }
+            
+            if _tipList.count > 1 {
+                tipButton2.setTitle(_tipList[1], for: UIControlState.normal)
+                tipButton2.isHidden = false
+            } else {
+                tipButton2.isHidden = true
+            }
+            
+            if _tipList.count > 2 {
+                tipButton3.setTitle(_tipList[2], for: UIControlState.normal)
+                tipButton3.isHidden = false
+            } else {
+                tipButton3.isHidden = true
+            }
+        }
+        
+        get {
+            return _tipList
+        }
+    }
     
 
     override func awakeFromNib() {

@@ -13,6 +13,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var listTableView : UITableView = UITableView()
     var bottomView : SendBottomView = SendBottomView()
+    var tipList : [String] = [String]()
     
     
     
@@ -21,7 +22,8 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 初始化
         self.title = "新建"
-        
+        self.view.backgroundColor = UIColor.white
+        tipList = ["  我是帅哥  ", "  添加标签  "]
         
         
         // 表视图
@@ -58,6 +60,79 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     // MARK:======================================按钮响应========================================
     
+    // MARK:添加标签
+    @objc func addTipsButtonAction(_ button : UIButton) {
+        
+        if (button.titleLabel?.text?.elementsEqual("  添加标签  "))! {
+            // 添加标签
+            let alert = UIAlertController(title: "添加标签", message: "请输入标签名", preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "确认", style: .default) { (action :UIAlertAction!) in
+                let textField = alert.textFields![0] as UITextField
+                
+                // 不能大于5个字符
+                if (textField.text as! String).characters.count <= 5 {
+                    
+                    // 插入新标签
+                    if !(textField.text?.elementsEqual(""))! {
+                        let newTip = "  " + textField.text! + "  "
+                        self.tipList.insert(newTip, at: self.tipList.count-1)
+                        
+                        // 如果标签数量大于3个，那么将最后一个删除
+                        if self.tipList.count > 3 {
+                            self.self.tipList.remove(at: 3)
+                        }
+                        
+                        // 刷新
+                        self.listTableView.reloadData()
+                    }
+                    
+                }
+                
+                
+                
+            }
+            
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action: UIAlertAction) in
+                
+            }
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            
+            alert.addTextField { (textField: UITextField) in
+                textField.textAlignment = NSTextAlignment.center
+            }
+            present(alert, animated: true, completion: nil)
+            
+        } else {
+            // 删除标签
+            let alert = UIAlertController(title: "是否删除标签?", message: nil, preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: "删除", style: .default) { (action :UIAlertAction!) in
+                
+                self.tipList.remove(at: self.tipList.index(of: (button.titleLabel?.text)!)!)
+                
+                // 如果最后一个不是 添加标签，那么在最后插入一个 添加标签
+                if !(self.tipList.last?.elementsEqual("  添加标签  "))! {
+                    self.tipList.insert("  添加标签  ", at: 2)
+                }
+                
+                self.listTableView.reloadData()
+                
+            }
+            
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel) { (action: UIAlertAction) in
+                
+            }
+            
+            alert.addAction(saveAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
     // MARK:定位
     @objc func locationButtonAction(_ button : UIButton) {
         
@@ -65,8 +140,27 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let result : [NSManagedObject] = Tool.searchCoredate("Zone")
         
-        let zone : NSManagedObject = result.first!
-        NSLog(zone.value(forKey: "content") as! String)
+        let zone : NSManagedObject = result.last!
+        let nickName : String = (zone.value(forKey: "nickName") as? String)!
+        let headPath : String = (zone.value(forKey: "headPath") as? String)!
+        let creatDate : String = (zone.value(forKey: "creatDate") as? String)!
+        let content : String = (zone.value(forKey: "content") as? String)!
+        let imagesPath : String = (zone.value(forKey: "imagesPath") as? String)!
+        let prise : String = (zone.value(forKey: "prise") as? String)!
+        let comment : String = (zone.value(forKey: "comment") as? String)!
+        let tips = zone.value(forKey: "tips")
+
+        NSLog(nickName)
+        NSLog(headPath)
+        NSLog(creatDate)
+        NSLog(content)
+        NSLog(imagesPath)
+        NSLog(prise)
+        NSLog(comment)
+
+        if tips != nil {
+            NSLog(tips as! String)
+        }
         
     }
     
@@ -77,13 +171,33 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell : SendCell = listTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SendCell
         
-        // 必须要有文字
+        
+        // 内容：必须要有文字
         if cell.textView.text.elementsEqual("") {
             return
         }
         
-
+        // 时间戳
+        let time : NSInteger = NSInteger(NSDate().timeIntervalSince1970)
         
+        // 定义传参
+        let nickName : String = "曹老师_cGTR"
+        let headPath : String = ""
+        let creatDate : String = String.init(format: "%ld", time)
+        let content : String = cell.textView.text
+        let imagesPath : String = ""
+        let prise : String = "0"
+        let comment : String = "0"
+        let tips : String = ""
+        
+        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, prise, comment, tips)
+        
+        if resule {
+            NSLog("success")
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            NSLog("error")
+        }
         
     }
 
@@ -117,6 +231,11 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell : SendCell = tableView.dequeueReusableCell(withIdentifier: "SendCell", for: indexPath) as! SendCell
+        
+        cell.tipList = tipList
+        cell.tipButton1.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
+        cell.tipButton2.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
+        cell.tipButton3.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
         
         cell.imageViewsHeight.constant = (kScreenWidth - 10 - 10 - 5*2) / 3
         
