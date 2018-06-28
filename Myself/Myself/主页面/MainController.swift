@@ -34,6 +34,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         listTableView.rowHeight = UITableViewAutomaticDimension
         listTableView.estimatedRowHeight = 300
         listTableView.backgroundColor = UIColor.white
+        listTableView.clipsToBounds = false
         listTableView.register(UINib(nibName: "ZoneListCell", bundle: Bundle.main), forCellReuseIdentifier: "ZoneListCell")
         listTableView.delegate = self
         listTableView.dataSource = self
@@ -52,6 +53,14 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
 
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        dataArray = Tool.searchCoredate("Zone")
+        listTableView.reloadData()
+        
+    }
+    
     // MARK:======================================按钮响应========================================
     // MARK:新建动态
     @objc func navButtonAcvtion(_ button: UIButton) {
@@ -113,13 +122,12 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             
         }) { (true) in
             
+            cell.priseImage.image = UIImage.init(named: "点赞2")
             UIView.animate(withDuration: 0.35, animations: {
                 
                 cell.priseImage.transform = CGAffineTransform.init(scaleX: 1, y: 1)
                 
             }) { (true) in
-                
-                cell.priseImage.image = UIImage.init(named: "点赞2")
                 
                 
                 // 修改点赞数

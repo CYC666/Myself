@@ -123,7 +123,7 @@ class ZoneListCell: UITableViewCell {
                 
                 if tipList.count > 0 && !tipList[0].elementsEqual(""){
                     
-                    tipButton1.setTitle("  " + tipList[0] + "  ", for: UIControlState.normal)
+                    tipButton1.setTitle(tipList[0], for: UIControlState.normal)
                     tipButton1.isHidden = false
                     tipViewsHeight.constant = 40
                 } else {
@@ -133,7 +133,7 @@ class ZoneListCell: UITableViewCell {
                 
                 if tipList.count > 1  && !tipList[1].elementsEqual("") {
                     
-                    tipButton2.setTitle("  " + tipList[1] + "  ", for: UIControlState.normal)
+                    tipButton2.setTitle(tipList[1], for: UIControlState.normal)
                     tipButton2.isHidden = false
                 } else {
                     tipButton2.isHidden = true
@@ -141,7 +141,7 @@ class ZoneListCell: UITableViewCell {
                 
                 if tipList.count > 2  && !tipList[2].elementsEqual("") {
                     
-                    tipButton3.setTitle("  " + tipList[2] + "  ", for: UIControlState.normal)
+                    tipButton3.setTitle(tipList[2], for: UIControlState.normal)
                     tipButton3.isHidden = false
                 } else {
                     tipButton3.isHidden = true

@@ -63,6 +63,8 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     // MARK:添加标签
     @objc func addTipsButtonAction(_ button : UIButton) {
         
+        UIApplication.shared.keyWindow?.endEditing(true)
+        
         if (button.titleLabel?.text?.elementsEqual("  添加标签  "))! {
             // 添加标签
             let alert = UIAlertController(title: "添加标签", message: "请输入标签名", preferredStyle: .alert)
@@ -180,6 +182,11 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 时间戳
         let time : NSInteger = NSInteger(NSDate().timeIntervalSince1970)
         
+        // 标签
+        if (tipList.last?.elementsEqual("  添加标签  "))! {
+            tipList.removeLast()
+        }
+        
         // 定义传参
         let nickName : String = "曹老师_cGTR"
         let headPath : String = ""
@@ -188,7 +195,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         let imagesPath : String = ""
         let prise : String = "0"
         let comment : String = "0"
-        let tips : String = ""
+        let tips : String = tipList.joined(separator: "|")
         
         let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, prise, comment, tips)
         
