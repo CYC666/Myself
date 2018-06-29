@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -28,49 +27,17 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                     </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加个主题，动态就可以进行分类噢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAh-46-LqU">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加个标签，动态就可以进行分类噢" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vAh-46-LqU">
                         <rect key="frame" x="15" y="23" width="214.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-z2-am7" userLabel="图片">
-                        <rect key="frame" x="0.0" y="215" width="376" height="150"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6k-oj-CDT">
-                                <rect key="frame" x="10" y="0.0" width="115.5" height="115.5"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="w6k-oj-CDT" secondAttribute="height" id="weN-ww-14H"/>
-                                </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzr-1J-oHT">
-                                <rect key="frame" x="250.5" y="0.0" width="115.5" height="115.5"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Hzr-1J-oHT" secondAttribute="height" id="dDy-XS-4ak"/>
-                                </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D90-am-pht">
-                                <rect key="frame" x="130.5" y="0.0" width="115" height="115.5"/>
-                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="D90-am-pht" secondAttribute="height" id="y9Q-mF-Wy3"/>
-                                </constraints>
-                            </button>
-                        </subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-z2-am7" userLabel="图片" customClass="SelectImageView" customModule="Myself" customModuleProvider="target">
+                        <rect key="frame" x="10" y="215" width="356" height="150"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Hzr-1J-oHT" firstAttribute="leading" secondItem="D90-am-pht" secondAttribute="trailing" constant="5" id="BPf-bF-BTc"/>
-                            <constraint firstItem="w6k-oj-CDT" firstAttribute="leading" secondItem="1L8-z2-am7" secondAttribute="leading" constant="10" id="HLz-PH-UOv"/>
-                            <constraint firstItem="D90-am-pht" firstAttribute="leading" secondItem="w6k-oj-CDT" secondAttribute="trailing" constant="5" id="JeX-Vg-OcX"/>
                             <constraint firstAttribute="height" constant="150" id="KSy-cW-Wv9"/>
-                            <constraint firstItem="D90-am-pht" firstAttribute="top" secondItem="1L8-z2-am7" secondAttribute="top" id="QHp-vg-Cqx"/>
-                            <constraint firstItem="w6k-oj-CDT" firstAttribute="top" secondItem="1L8-z2-am7" secondAttribute="top" id="UFG-uJ-xQ3"/>
-                            <constraint firstItem="D90-am-pht" firstAttribute="width" secondItem="w6k-oj-CDT" secondAttribute="width" id="qXo-Nu-he2"/>
-                            <constraint firstItem="Hzr-1J-oHT" firstAttribute="top" secondItem="1L8-z2-am7" secondAttribute="top" id="tkB-p6-p8O"/>
-                            <constraint firstAttribute="trailing" secondItem="Hzr-1J-oHT" secondAttribute="trailing" constant="10" id="uK2-G7-Qab"/>
-                            <constraint firstItem="Hzr-1J-oHT" firstAttribute="width" secondItem="w6k-oj-CDT" secondAttribute="width" id="wly-qo-82b"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fP5-d1-i2G" userLabel="标签 50">
@@ -123,21 +90,19 @@
                     <constraint firstItem="fP5-d1-i2G" firstAttribute="top" secondItem="1L8-z2-am7" secondAttribute="bottom" id="0zA-yv-7tF"/>
                     <constraint firstItem="wRg-90-IzC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="FHI-zn-wpF"/>
                     <constraint firstItem="vAh-46-LqU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Fej-DX-TRz"/>
-                    <constraint firstItem="1L8-z2-am7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HYK-cx-xtM"/>
+                    <constraint firstItem="1L8-z2-am7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HYK-cx-xtM"/>
                     <constraint firstAttribute="trailing" secondItem="fP5-d1-i2G" secondAttribute="trailing" id="Ifg-Z0-7b5"/>
                     <constraint firstItem="fP5-d1-i2G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Pfm-ot-mnT"/>
                     <constraint firstItem="1L8-z2-am7" firstAttribute="top" secondItem="wRg-90-IzC" secondAttribute="bottom" id="Xxc-GW-JUx"/>
                     <constraint firstItem="vAh-46-LqU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="djj-0x-lt3"/>
-                    <constraint firstAttribute="trailing" secondItem="1L8-z2-am7" secondAttribute="trailing" id="mBt-ts-blG"/>
+                    <constraint firstAttribute="trailing" secondItem="1L8-z2-am7" secondAttribute="trailing" constant="10" id="mBt-ts-blG"/>
                     <constraint firstAttribute="trailing" secondItem="wRg-90-IzC" secondAttribute="trailing" constant="10" id="s1u-Ss-ObR"/>
                     <constraint firstItem="wRg-90-IzC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="vCc-Vm-bhK"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="buttonA" destination="w6k-oj-CDT" id="AY3-L1-Pej"/>
-                <outlet property="buttonB" destination="D90-am-pht" id="fQw-ja-otv"/>
-                <outlet property="buttonC" destination="Hzr-1J-oHT" id="e5B-QH-J4w"/>
                 <outlet property="imageViewsHeight" destination="KSy-cW-Wv9" id="sa0-nR-LRy"/>
+                <outlet property="selectImageView" destination="1L8-z2-am7" id="65h-mr-0Q2"/>
                 <outlet property="textView" destination="wRg-90-IzC" id="lOS-fk-m83"/>
                 <outlet property="tipButton1" destination="rTP-ri-AnN" id="Nv4-ke-euv"/>
                 <outlet property="tipButton2" destination="c40-cy-U58" id="yYO-gk-Q6O"/>

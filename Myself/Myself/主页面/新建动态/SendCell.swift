@@ -15,9 +15,8 @@ class SendCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var tipLabel: UILabel!
     
     @IBOutlet weak var imageViewsHeight: NSLayoutConstraint!
-    @IBOutlet weak var buttonA: UIButton!
-    @IBOutlet weak var buttonB: UIButton!
-    @IBOutlet weak var buttonC: UIButton!
+    @IBOutlet weak var selectImageView: SelectImageView!
+    
     
     
     @IBOutlet weak var tipButton1: UIButton!
@@ -92,6 +91,7 @@ class SendCell: UITableViewCell, UITextViewDelegate {
         
         if textView.text.elementsEqual("") {
             tipLabel.alpha = 1
+            
         }
         
     }

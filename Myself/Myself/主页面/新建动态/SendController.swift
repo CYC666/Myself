@@ -14,6 +14,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     var listTableView : UITableView = UITableView()
     var bottomView : SendBottomView = SendBottomView()
     var tipList : [String] = [String]()
+    var imageArray : [SelectImageModel] = [SelectImageModel]()
     
     
     
@@ -24,14 +25,25 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.title = "新建"
         self.view.backgroundColor = UIColor.white
         tipList = ["  我是帅哥  ", "  添加标签  "]
+        let model : SelectImageModel = SelectImageModel()
+        model.image = UIImage.init(named: "添加")!
+        model.path = "添加"
+        
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
+        imageArray.insert(model, at: 0)
         
         
         // 表视图
         listTableView = UITableView(frame: CGRect(x: 0, y: Nav_Height, width: kScreenWidth, height: kScreenHeight - Nav_Height - TabBar_Height), style: UITableViewStyle.plain)
         listTableView.tableFooterView = UIView(frame: CGRect.zero)
         listTableView.separatorStyle = UITableViewCellSeparatorStyle.none
-//        listTableView.rowHeight = UITableViewAutomaticDimension
-//        listTableView.estimatedRowHeight = 250
         listTableView.backgroundColor = UIColor.white
         listTableView.register(UINib(nibName: "SendCell", bundle: Bundle.main), forCellReuseIdentifier: "SendCell")
         listTableView.delegate = self
@@ -73,7 +85,9 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
                 let textField = alert.textFields![0] as UITextField
                 
                 // 不能大于5个字符
-                if (textField.text as! String).characters.count <= 5 {
+                let string = textField.text
+                let count = string?.count
+                if count! <= 5 {
                     
                     // 插入新标签
                     if !(textField.text?.elementsEqual(""))! {
@@ -220,7 +234,17 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 15 + 200 + 50 + (kScreenWidth - 10 - 10 - 5*2) / 3
+        
+        var imagesViewHeight : CGFloat = 0.0
+        if imageArray.count > 0 {
+            let size : NSInteger = NSInteger(((kScreenWidth - 20) - 5) / 3) + 5
+            let line : NSInteger = (imageArray.count - 1) / 3 + 1
+            imagesViewHeight = CGFloat(size * line)
+        } else {
+            imagesViewHeight = 0.0
+        }
+        
+        return 15 + 200 + 50 + imagesViewHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -240,11 +264,20 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell : SendCell = tableView.dequeueReusableCell(withIdentifier: "SendCell", for: indexPath) as! SendCell
         
         cell.tipList = tipList
+
         cell.tipButton1.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
         cell.tipButton2.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
         cell.tipButton3.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
         
-        cell.imageViewsHeight.constant = (kScreenWidth - 10 - 10 - 5*2) / 3
+        cell.selectImageView.dataArray = imageArray
+        if imageArray.count > 0 {
+            let size : NSInteger = NSInteger(((kScreenWidth - 20) - 5) / 3) + 5
+            let line : NSInteger = (imageArray.count - 1) / 3 + 1
+            cell.imageViewsHeight.constant = CGFloat(size * line)
+        } else {
+            cell.imageViewsHeight.constant = 0.0
+        }
+        
         
         return cell
         

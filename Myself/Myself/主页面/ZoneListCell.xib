@@ -22,9 +22,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IV-eA-xCO" userLabel="头像区 60">
                         <rect key="frame" x="0.0" y="0.0" width="366" height="60"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dLG-cO-pSM">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="dLG-cO-pSM">
                                 <rect key="frame" x="15" y="14" width="46" height="46"/>
-                                <color key="backgroundColor" red="0.42368195976307188" green="0.76283094618055558" blue="0.93474392361111114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="AU2-P4-kzx"/>
                                     <constraint firstAttribute="height" constant="46" id="opR-RB-bX7"/>
@@ -457,6 +457,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="logo" width="1024" height="1024"/>
         <image name="分享" width="50" height="50"/>
         <image name="向下灰色箭头" width="50" height="50"/>
         <image name="点赞" width="50" height="50"/>
