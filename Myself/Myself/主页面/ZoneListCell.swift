@@ -25,15 +25,8 @@ class ZoneListCell: UITableViewCell {
     
     // 图片区
     @IBOutlet weak var imageViewsHeight: NSLayoutConstraint!
-    @IBOutlet weak var buttonA: UIButton!
-    @IBOutlet weak var buttonB: UIButton!
-    @IBOutlet weak var buttonC: UIButton!
-    @IBOutlet weak var buttonD: UIButton!
-    @IBOutlet weak var buttonE: UIButton!
-    @IBOutlet weak var buttonF: UIButton!
-    @IBOutlet weak var buttonG: UIButton!
-    @IBOutlet weak var buttonH: UIButton!
-    @IBOutlet weak var buttonI: UIButton!
+    @IBOutlet weak var imagesView: ZoneListImageView!
+    
     
     // 标签区
     @IBOutlet weak var tipViewsHeight: NSLayoutConstraint!
@@ -103,9 +96,15 @@ class ZoneListCell: UITableViewCell {
                 
                 let images : [String] = (imagesPath as! String).components(separatedBy: "|")
                 
-                if images.count > 0 {
+                if images.count > 0 && !((images.first?.elementsEqual(""))!) {
                     
-                    imageViewsHeight.constant = 0
+                    let size = (kScreenWidth - 70 - 15 - 5 * 2) / 3 + 5
+                    let line = (images.count - 1) / 3 + 1
+                    imageViewsHeight.constant = size * CGFloat(line)
+                    
+                    // 设置图片数据
+                    imagesView.dataArray = images
+                    
                     
                 } else {
                     imageViewsHeight.constant = 0

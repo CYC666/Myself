@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate {
     
     var listTableView : UITableView = UITableView()
     
@@ -191,11 +191,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell : ZoneListCell = tableView.dequeueReusableCell(withIdentifier: "ZoneListCell", for: indexPath) as! ZoneListCell
         
-        cell.imageViewsHeight.constant = kScreenWidth - 70 - 15 - 5 * 2
-        
         let model : NSManagedObject = dataArray[indexPath.row] as! NSManagedObject
         
         cell.zoneModel = model
+        cell.imagesView.viewDelegate = self
         
         cell.moreButton.tag = 200 + indexPath.row
         cell.moreButton.addTarget(self, action: #selector(deleteButtonAction), for: UIControlEvents.touchUpInside)
@@ -215,7 +214,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     
-    
+    // MARK:点击图片
+    func ZoneListImageViewSelectIndex(_ index: NSInteger) {
+        Tool.tips(self, String.init(format: "%ld", index))
+    }
     
     
     

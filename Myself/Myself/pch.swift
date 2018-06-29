@@ -26,3 +26,12 @@ let Label_Color_B = CRGB(R: 102, 102, 102, 1)
 let Label_Color_C = CRGB(R: 153, 153, 153, 1)
 let Label_Color_D = CRGB(R: 197, 197, 197, 1)
 let Background_Color = CRGB(R: 235, 235, 235, 1)
+
+// =============================== 字符串 ================================
+let ImagePath : String = "/Documents/"
+func GetImagePath(_ path : String) -> String {
+    return NSHomeDirectory().appending(ImagePath).appending(path)+".png"
+}
+
+
+

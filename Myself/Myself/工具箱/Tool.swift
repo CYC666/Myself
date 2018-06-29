@@ -50,6 +50,7 @@ class Tool: NSObject {
     ///   - creatDate: 创建时间
     ///   - content: 内容
     ///   - imagesPath: 图片路径拼接
+    ///   - imagesThumbPath: 缩略图路径拼接
     ///   - prise: 点赞数
     ///   - comment: 评论数
     ///   - tips: 标签
@@ -60,6 +61,7 @@ class Tool: NSObject {
                               _ creatDate : String,
                               _ content : String,
                               _ imagesPath : String,
+                              _ imagesThumbPath : String,
                               _ prise : String,
                               _ comment : String,
                               _ tips : String) -> Bool {
@@ -76,12 +78,12 @@ class Tool: NSObject {
         // 步骤三：保存
         zone.setValue(nickName, forKey: "nickName")
         zone.setValue(headPath, forKey: "headPath")
-        zone.setValue(headPath, forKey: "headPath")
-        zone.setValue(content, forKey: "content")
         zone.setValue(creatDate, forKey: "creatDate")
+        zone.setValue(content, forKey: "content")
+        zone.setValue(imagesPath, forKey: "imagesPath")
+        zone.setValue(imagesThumbPath, forKey: "imagesThumbPath")
         zone.setValue(prise, forKey: "prise")
         zone.setValue(comment, forKey: "comment")
-        zone.setValue(imagesPath, forKey: "imagesPath")
         zone.setValue(tips, forKey: "tips")
         
         // 步骤四：保存entity到托管对象中。如果保存失败，进行处理
@@ -99,14 +101,43 @@ class Tool: NSObject {
     
     
     
+    // MARK:=========================== 沙盒操作 ===========================
+    // MARK:将图片保存到沙盒
+    /// - Parameters:
+    ///   - image: 图片
+    ///   - scale: 压缩比例
+    ///   - imageName: 图片路径
+    /// - Returns: 返回是否保存成功
+    class func saveImage(image: UIImage, scale: CGFloat, imageName: String) -> Bool{
+        
+        if let imageData = UIImageJPEGRepresentation(image, scale) as NSData? {
+            let fullPath = NSHomeDirectory().appending(ImagePath).appending(imageName)+".png"
+            return imageData.write(toFile: fullPath, atomically: true)
+        } else {
+            return false
+        }
+    }
     
     
+    // MARK:=========================== 有意思操作 ===========================
+    // MARK:获取当前时间字符串
+    class func getCurrentDateString() -> String{
+        
+        let now = Date()
+        let dformatter = DateFormatter()
+        dformatter.dateFormat = "yyyy年MM月dd日_HH:mm:ss"
+        
+        return dformatter.string(from: now)
+        
+    }
     
-    
-    
-    
-    
-    
+    // MARK:提示
+    class func tips(_ ctrl : UIViewController, _ text : String) {
+        
+        let alert = UIAlertController(title: text, message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "确定", style: .default, handler: nil))
+        ctrl.present(alert, animated: true, completion: nil)
+    }
     
     
     

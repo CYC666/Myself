@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectImageViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var listTableView : UITableView = UITableView()
     var bottomView : SendBottomView = SendBottomView()
@@ -29,14 +29,6 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         model.image = UIImage.init(named: "添加")!
         model.path = "添加"
         
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
-        imageArray.insert(model, at: 0)
         imageArray.insert(model, at: 0)
         
         
@@ -196,32 +188,68 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 时间戳
         let time : NSInteger = NSInteger(NSDate().timeIntervalSince1970)
         
+        // 图片
+        var images : [String] = [String]()
+        var thumbImages : [String] = [String]()
+        for (index, item) in imageArray.enumerated() {
+            
+            // 如果是➕，完事
+            if item.path.elementsEqual("添加") {
+                break
+            }
+            
+            let timeString = Tool.getCurrentDateString()
+            let imagePath = String.init(format: "%@_%ld", timeString, index)
+            let imageThumbPath = String.init(format: "thumb_%@_%ld", timeString, index)
+            
+            // 将图片保存到沙盒，成功则继续，否则返回，清空图片路径
+            if Tool.saveImage(image: item.image, scale: 1, imageName: imagePath) {
+                images.append(imagePath)
+            } else {
+                images.removeAll()
+                return
+            }
+            if Tool.saveImage(image: item.image, scale: 0.3, imageName: imageThumbPath) {
+                thumbImages.append(imageThumbPath)
+            } else {
+                thumbImages.removeAll()
+                return
+            }
+            
+            
+            
+        }
+        
+        
         // 标签
         if (tipList.last?.elementsEqual("  添加标签  "))! {
             tipList.removeLast()
         }
+        
+        
         
         // 定义传参
         let nickName : String = "曹老师_cGTR"
         let headPath : String = ""
         let creatDate : String = String.init(format: "%ld", time)
         let content : String = cell.textView.text
-        let imagesPath : String = ""
+        let imagesPath : String = images.joined(separator: "|")
+        let imagesThumbPath : String = thumbImages.joined(separator: "|")
         let prise : String = "0"
         let comment : String = "0"
         let tips : String = tipList.joined(separator: "|")
         
-        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, prise, comment, tips)
+        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, imagesThumbPath, prise, comment, tips)
         
         if resule {
-            NSLog("success")
             self.navigationController?.popViewController(animated: true)
         } else {
-            NSLog("error")
+            Tool.tips(self, "添加动态失败")
         }
         
     }
 
+    
     
     
     // MARK:======================================代理方法========================================
@@ -270,6 +298,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.tipButton3.addTarget(self, action: #selector(addTipsButtonAction), for: UIControlEvents.touchUpInside)
         
         cell.selectImageView.dataArray = imageArray
+        cell.selectImageView.viewDelegate = self
         if imageArray.count > 0 {
             let size : NSInteger = NSInteger(((kScreenWidth - 20) - 5) / 3) + 5
             let line : NSInteger = (imageArray.count - 1) / 3 + 1
@@ -289,9 +318,54 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        UIApplication.shared.keyWindow?.endEditing(true)
+    // MARK:点击图片
+    func SelectImageViewSelectIndex(_ index: NSInteger) {
+        
+        let model : SelectImageModel = imageArray[index]
+        
+        if model.path.elementsEqual("添加") {
+            
+            // 选取图片
+            let picker = UIImagePickerController()
+            picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+            picker.delegate = self
+            self.present(picker, animated: true, completion: {
+                UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+            })
+            
+            
+        }
+        
     }
+    
+    // MARK:选图控制器代理方法
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerOriginalImage]
+        
+        let model : SelectImageModel = SelectImageModel()
+        model.image = image as! UIImage
+        
+        imageArray.insert(model, at: imageArray.count - 1)
+        
+        // 如果超过9个元素，那么把最后一个➕去掉
+        if imageArray.count > 9 {
+            imageArray.removeLast()
+        }
+        
+        listTableView.reloadData()
+        
+        picker.dismiss(animated: true, completion: {
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        })
+    }
+    
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: {
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        })
+    }
+    
     
     // MARK:======================================通知========================================
     

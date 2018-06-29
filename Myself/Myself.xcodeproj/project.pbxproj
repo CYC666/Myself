@@ -29,6 +29,7 @@
 		1711589C20E5C1D500013C31 /* SelectImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711589A20E5C1D500013C31 /* SelectImageCell.swift */; };
 		1711589D20E5C1D500013C31 /* SelectImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1711589B20E5C1D500013C31 /* SelectImageCell.xib */; };
 		1711589F20E5C8F200013C31 /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711589E20E5C8F200013C31 /* SelectImageModel.swift */; };
+		171158A120E6163500013C31 /* ZoneListImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A020E6163500013C31 /* ZoneListImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		1711589A20E5C1D500013C31 /* SelectImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageCell.swift; sourceTree = "<group>"; };
 		1711589B20E5C1D500013C31 /* SelectImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCell.xib; sourceTree = "<group>"; };
 		1711589E20E5C8F200013C31 /* SelectImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageModel.swift; sourceTree = "<group>"; };
+		171158A020E6163500013C31 /* ZoneListImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				1711588220E36D0300013C31 /* MainController.swift */,
 				1711588720E3796700013C31 /* ZoneListCell.swift */,
 				1711588820E3796700013C31 /* ZoneListCell.xib */,
+				171158A020E6163500013C31 /* ZoneListImageView.swift */,
 				1711588B20E39A7B00013C31 /* 新建动态 */,
 			);
 			path = "主页面";
@@ -225,6 +228,7 @@
 				1711589320E3E7A600013C31 /* SendBottomView.swift in Sources */,
 				1711589920E5C1C100013C31 /* SelectImageView.swift in Sources */,
 				1711589020E3DF4100013C31 /* SendCell.swift in Sources */,
+				171158A120E6163500013C31 /* ZoneListImageView.swift in Sources */,
 				1711588320E36D0300013C31 /* MainController.swift in Sources */,
 				1711586820E3349800013C31 /* pch.swift in Sources */,
 				1711586C20E3400400013C31 /* GuideController.swift in Sources */,

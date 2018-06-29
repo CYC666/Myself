@@ -1,5 +1,5 @@
 //
-//  SelectImageView.swift
+//  ZoneListImageView.swift
 //  Myself
 //
 //  Created by 曹老师 on 2018/6/29.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol SelectImageViewDelegate : NSObjectProtocol {
+protocol ZoneListImageViewDelegate : NSObjectProtocol {
     
-    func SelectImageViewSelectIndex(_ index : NSInteger)
+    func ZoneListImageViewSelectIndex(_ index : NSInteger)
     
 }
 
-class SelectImageView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
-
-    weak var viewDelegate : SelectImageViewDelegate?
+class ZoneListImageView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    weak var viewDelegate : ZoneListImageViewDelegate?
     
     
-    var _dataArray : [SelectImageModel] = [SelectImageModel]()
-    var dataArray : [SelectImageModel] {
+    var _dataArray : [String] = [String]()
+    var dataArray : [String] {
         
         set {
             _dataArray = newValue
@@ -40,10 +40,10 @@ class SelectImageView: UICollectionView, UICollectionViewDelegate, UICollectionV
     override func awakeFromNib() {
         
         let layout = UICollectionViewFlowLayout.init()
-        let size : NSInteger = NSInteger(((kScreenWidth - 20) - 10) / 3)
+        let size : NSInteger = NSInteger(((kScreenWidth - 70 - 15) - 10) / 3)
         layout.itemSize = CGSize.init(width: size, height: size)
-        layout.minimumLineSpacing = (kScreenWidth - CGFloat(size) * 3 - 20) * 0.5
-        layout.minimumInteritemSpacing = (kScreenWidth - CGFloat(size) * 3 - 20) * 0.5
+        layout.minimumLineSpacing = (kScreenWidth - CGFloat(size) * 3 - 70 - 15) * 0.5
+        layout.minimumInteritemSpacing = (kScreenWidth - CGFloat(size) * 3 - 70 - 15) * 0.5
         self.collectionViewLayout = layout
         self.delegate = self
         self.dataSource = self
@@ -59,56 +59,23 @@ class SelectImageView: UICollectionView, UICollectionViewDelegate, UICollectionV
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
+    
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell : SelectImageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SelectImageCell", for: indexPath) as! SelectImageCell
         
-        let model : SelectImageModel = dataArray[indexPath.row] 
+        let model : String = dataArray[indexPath.row]
         
-        cell.icon.image = model.image
+        cell.icon.image = UIImage.init(contentsOfFile: GetImagePath(model))
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        viewDelegate?.SelectImageViewSelectIndex(indexPath.row)
+        viewDelegate?.ZoneListImageViewSelectIndex(indexPath.row)
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

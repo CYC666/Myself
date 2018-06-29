@@ -6,11 +6,12 @@
         <attribute name="creatDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="headPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imagesPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imagesThumbPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="prise" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tips" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Zone" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="Zone" positionX="-63" positionY="-18" width="128" height="180"/>
     </elements>
 </model>
