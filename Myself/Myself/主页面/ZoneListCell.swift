@@ -60,11 +60,12 @@ class ZoneListCell: UITableViewCell {
             }
             
             // 头像
-            if let headPath = _zoneModel?.value(forKey: "headPath") {
-                headImage.image = UIImage.init(named: headPath as! String)
-            } else {
-                headImage.image = nil
-            }
+//            if let headPath = _zoneModel?.value(forKey: "headPath") {
+//                headImage.image = UIImage.init(named: headPath as! String)
+//            } else {
+//                headImage.image = nil
+//            }
+            headImage.image = UIImage.init(named: "logo")
             
             // 日期
             if let creatDate = _zoneModel?.value(forKey: "creatDate") {
@@ -175,6 +176,7 @@ class ZoneListCell: UITableViewCell {
             }
             
             // 评论
+            commentImage.isHidden = true
             if let comment = _zoneModel?.value(forKey: "comment") {
                 
                 if (comment as! String).elementsEqual("") || (comment as! String).elementsEqual("0") {
