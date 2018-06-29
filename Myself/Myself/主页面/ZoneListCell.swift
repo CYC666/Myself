@@ -42,6 +42,7 @@ class ZoneListCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var returnButton: UIButton!
+    @IBOutlet weak var returnImage: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
     
     // 数据
@@ -92,7 +93,7 @@ class ZoneListCell: UITableViewCell {
             }
             
             // 图片
-            if let imagesPath = _zoneModel?.value(forKey: "imagesPath") {
+            if let imagesPath = _zoneModel?.value(forKey: "imagesThumbPath") {
                 
                 let images : [String] = (imagesPath as! String).components(separatedBy: "|")
                 
@@ -189,6 +190,10 @@ class ZoneListCell: UITableViewCell {
                 commentLabel.text = ""
                 commentImage.image = UIImage.init(named: "评论")
             }
+            
+            // 转发
+            returnImage.isHidden = true
+            
             
         }
         

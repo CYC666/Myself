@@ -10,13 +10,15 @@ import UIKit
 
 protocol ZoneListImageViewDelegate : NSObjectProtocol {
     
-    func ZoneListImageViewSelectIndex(_ index : NSInteger)
+    func ZoneListImageViewSelectIndex(_ index : NSInteger, _ cell : NSInteger)
     
 }
 
 class ZoneListImageView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource {
     
     weak var viewDelegate : ZoneListImageViewDelegate?
+    var cellIndex : NSInteger = NSInteger()
+    
     
     
     var _dataArray : [String] = [String]()
@@ -73,7 +75,7 @@ class ZoneListImageView: UICollectionView, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        viewDelegate?.ZoneListImageViewSelectIndex(indexPath.row)
+        viewDelegate?.ZoneListImageViewSelectIndex(indexPath.row, cellIndex)
         
     }
     

@@ -250,7 +250,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="分享" translatesAutoresizingMaskIntoConstraints="NO" id="FXr-mY-yT1">
-                                <rect key="frame" x="220.5" y="15" width="20" height="20"/>
+                                <rect key="frame" x="261" y="15" width="20" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="HTH-oA-xla"/>
@@ -261,7 +261,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="N4M-NO-bdY" secondAttribute="trailing" id="2YI-cd-Z6J"/>
-                            <constraint firstItem="FXr-mY-yT1" firstAttribute="leading" secondItem="dr1-5V-GHe" secondAttribute="trailing" id="3bh-or-qeP"/>
                             <constraint firstAttribute="bottom" secondItem="dr1-5V-GHe" secondAttribute="bottom" id="4fG-Y9-mJv"/>
                             <constraint firstAttribute="bottom" secondItem="TFr-ge-tuo" secondAttribute="bottom" id="CGl-5m-WhC"/>
                             <constraint firstItem="dr1-5V-GHe" firstAttribute="leading" secondItem="TFr-ge-tuo" secondAttribute="trailing" id="EjP-Qa-bGz"/>
@@ -279,6 +278,7 @@
                             <constraint firstItem="GUw-4M-FaE" firstAttribute="top" secondItem="aom-kE-YOB" secondAttribute="top" id="oMk-h9-Xg2"/>
                             <constraint firstItem="TFr-ge-tuo" firstAttribute="leading" secondItem="GUw-4M-FaE" secondAttribute="trailing" id="pGY-Fg-LO8"/>
                             <constraint firstItem="GUw-4M-FaE" firstAttribute="leading" secondItem="aom-kE-YOB" secondAttribute="leading" id="r9V-d5-cwm"/>
+                            <constraint firstAttribute="trailing" secondItem="FXr-mY-yT1" secondAttribute="trailing" id="ruw-ej-z6r"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EwK-Xm-FWS" userLabel="分割线">
@@ -328,6 +328,7 @@
                 <outlet property="priseImage" destination="tuk-Er-HP4" id="HCY-xg-6d8"/>
                 <outlet property="priseLabel" destination="tFV-2s-STK" id="PdL-ql-UgC"/>
                 <outlet property="returnButton" destination="dr1-5V-GHe" id="tQE-yP-kbk"/>
+                <outlet property="returnImage" destination="tc8-Xk-QUK" id="9DY-kZ-uoo"/>
                 <outlet property="shareButton" destination="N4M-NO-bdY" id="7Np-jB-ngV"/>
                 <outlet property="timeLabel" destination="Y3L-FV-7pw" id="Krv-DI-Wpf"/>
                 <outlet property="tipButton1" destination="3Vm-1V-f2H" id="sXc-xG-VMa"/>

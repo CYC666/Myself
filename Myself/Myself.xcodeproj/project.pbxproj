@@ -30,6 +30,9 @@
 		1711589D20E5C1D500013C31 /* SelectImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1711589B20E5C1D500013C31 /* SelectImageCell.xib */; };
 		1711589F20E5C8F200013C31 /* SelectImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1711589E20E5C8F200013C31 /* SelectImageModel.swift */; };
 		171158A120E6163500013C31 /* ZoneListImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A020E6163500013C31 /* ZoneListImageView.swift */; };
+		171158A420E6212D00013C31 /* PictureShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A320E6212D00013C31 /* PictureShowView.swift */; };
+		171158A720E621FA00013C31 /* PictureShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A520E621FA00013C31 /* PictureShowCell.swift */; };
+		171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171158A620E621FA00013C31 /* PictureShowCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +62,9 @@
 		1711589B20E5C1D500013C31 /* SelectImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectImageCell.xib; sourceTree = "<group>"; };
 		1711589E20E5C8F200013C31 /* SelectImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectImageModel.swift; sourceTree = "<group>"; };
 		171158A020E6163500013C31 /* ZoneListImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneListImageView.swift; sourceTree = "<group>"; };
+		171158A320E6212D00013C31 /* PictureShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowView.swift; sourceTree = "<group>"; };
+		171158A520E621FA00013C31 /* PictureShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowCell.swift; sourceTree = "<group>"; };
+		171158A620E621FA00013C31 /* PictureShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureShowCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 				1711588720E3796700013C31 /* ZoneListCell.swift */,
 				1711588820E3796700013C31 /* ZoneListCell.xib */,
 				171158A020E6163500013C31 /* ZoneListImageView.swift */,
+				171158A220E6210F00013C31 /* 显示大图 */,
 				1711588B20E39A7B00013C31 /* 新建动态 */,
 			);
 			path = "主页面";
@@ -142,6 +149,16 @@
 				1711589E20E5C8F200013C31 /* SelectImageModel.swift */,
 			);
 			path = "新建动态";
+			sourceTree = "<group>";
+		};
+		171158A220E6210F00013C31 /* 显示大图 */ = {
+			isa = PBXGroup;
+			children = (
+				171158A320E6212D00013C31 /* PictureShowView.swift */,
+				171158A520E621FA00013C31 /* PictureShowCell.swift */,
+				171158A620E621FA00013C31 /* PictureShowCell.xib */,
+			);
+			path = "显示大图";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1711589520E3E7AD00013C31 /* SendBottomView.xib in Resources */,
+				171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */,
 				1711589D20E5C1D500013C31 /* SelectImageCell.xib in Resources */,
 				1711586020E32FE700013C31 /* LaunchScreen.storyboard in Resources */,
 				1711585D20E32FE700013C31 /* Assets.xcassets in Resources */,
@@ -221,7 +239,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1711585B20E32FE700013C31 /* Myself.xcdatamodeld in Sources */,
+				171158A420E6212D00013C31 /* PictureShowView.swift in Sources */,
 				1711585520E32FE700013C31 /* ViewController.swift in Sources */,
+				171158A720E621FA00013C31 /* PictureShowCell.swift in Sources */,
 				1711585320E32FE700013C31 /* AppDelegate.swift in Sources */,
 				1711589C20E5C1D500013C31 /* SelectImageCell.swift in Sources */,
 				1711589720E47B2B00013C31 /* Tool.swift in Sources */,

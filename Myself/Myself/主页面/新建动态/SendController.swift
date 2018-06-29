@@ -24,7 +24,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         // 初始化
         self.title = "新建"
         self.view.backgroundColor = UIColor.white
-        tipList = ["  我是帅哥  ", "  添加标签  "]
+        tipList = ["  添加标签  "]
         let model : SelectImageModel = SelectImageModel()
         model.image = UIImage.init(named: "添加")!
         model.path = "添加"
@@ -146,29 +146,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         UIApplication.shared.keyWindow?.endEditing(true)
         
-        let result : [NSManagedObject] = Tool.searchCoredate("Zone")
-        
-        let zone : NSManagedObject = result.last!
-        let nickName : String = (zone.value(forKey: "nickName") as? String)!
-        let headPath : String = (zone.value(forKey: "headPath") as? String)!
-        let creatDate : String = (zone.value(forKey: "creatDate") as? String)!
-        let content : String = (zone.value(forKey: "content") as? String)!
-        let imagesPath : String = (zone.value(forKey: "imagesPath") as? String)!
-        let prise : String = (zone.value(forKey: "prise") as? String)!
-        let comment : String = (zone.value(forKey: "comment") as? String)!
-        let tips = zone.value(forKey: "tips")
-
-        NSLog(nickName)
-        NSLog(headPath)
-        NSLog(creatDate)
-        NSLog(content)
-        NSLog(imagesPath)
-        NSLog(prise)
-        NSLog(comment)
-
-        if tips != nil {
-            NSLog(tips as! String)
-        }
+        Tool.tips(self, "暂不开发添加定位")
         
     }
     

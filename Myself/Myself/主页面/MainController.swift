@@ -9,9 +9,12 @@
 import UIKit
 import CoreData
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate {
+class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate {
     
     var listTableView : UITableView = UITableView()
+    var pictureView : PictureShowView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    
     
     var dataArray = [Any]()
     
@@ -159,8 +162,50 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
         }
+
+        
+    }
+    
+    // MARK:转发
+    func returnButtonAction(_ button : UIButton) {
+        
+        // 400
+    }
+    
+    // MARK:分享
+    @objc func shareButtonAction(_ button : UIButton) {
+        
+        let index = button.tag - 500
+        
+        let model : NSManagedObject = dataArray[index] as! NSManagedObject
         
         
+        // 如果有照片那就分享照片
+        if let imagesPath = model.value(forKey: "imagesPath") {
+
+            let images : [String] = (imagesPath as! String).components(separatedBy: "|")
+            if images.count > 0 && !((images.first?.elementsEqual(""))!) {
+                
+                var list : [UIImage]! = [UIImage]()
+                for (_ , item) in images.enumerated() {
+                    
+                    let image = UIImage.init(contentsOfFile: GetImagePath(item))
+                    list.append(image!)
+                }
+                let ctrl : UIActivityViewController = UIActivityViewController.init(activityItems: list, applicationActivities: nil)
+                self.present(ctrl, animated: true, completion: nil)
+                return
+            }
+
+        }
+        
+        // 没有图片就分享文本
+        if let content = model.value(forKey: "content") {
+            
+            let ctrl : UIActivityViewController = UIActivityViewController.init(activityItems: [content], applicationActivities: nil)
+            self.present(ctrl, animated: true, completion: nil)
+            
+        }
         
         
         
@@ -194,6 +239,8 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         let model : NSManagedObject = dataArray[indexPath.row] as! NSManagedObject
         
         cell.zoneModel = model
+        
+        cell.imagesView.cellIndex = indexPath.row
         cell.imagesView.viewDelegate = self
         
         cell.moreButton.tag = 200 + indexPath.row
@@ -201,6 +248,9 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.priseButton.tag = 300 + indexPath.row
         cell.priseButton.addTarget(self, action: #selector(priseButtonAction), for: UIControlEvents.touchUpInside)
+        
+        cell.shareButton.tag = 500 + indexPath.row
+        cell.shareButton.addTarget(self, action: #selector(shareButtonAction), for: UIControlEvents.touchUpInside)
         
         return cell
         
@@ -215,12 +265,53 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     // MARK:点击图片
-    func ZoneListImageViewSelectIndex(_ index: NSInteger) {
-        Tool.tips(self, String.init(format: "%ld", index))
+    func ZoneListImageViewSelectIndex(_ index: NSInteger, _ cell : NSInteger) {
+        
+        let layout = UICollectionViewFlowLayout.init()
+        layout.itemSize = CGSize.init(width: kScreenWidth + 20, height: kScreenHeight)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        
+        pictureView = PictureShowView.init(frame: CGRect.init(x: -10, y: 0, width: kScreenWidth + 20, height: kScreenHeight),
+                                           collectionViewLayout: layout)
+        pictureView.register(UINib.init(nibName: "PictureShowCell", bundle: Bundle.main), forCellWithReuseIdentifier: "PictureShowCell")
+        pictureView.setContentOffset(CGPoint.init(x: (kScreenWidth + 20) * CGFloat(index), y: 0), animated: false)
+        pictureView.isPagingEnabled = true
+        pictureView.viewDelegate = self
+        pictureView.alpha = 0
+        
+        let model : NSManagedObject = dataArray[cell] as! NSManagedObject
+        if let imagesPath = model.value(forKey: "imagesPath") {
+            
+            let images : [String] = (imagesPath as! String).components(separatedBy: "|")
+            if images.count > 0 && !((images.first?.elementsEqual(""))!) {
+                
+                pictureView.dataArray = images
+                UIApplication.shared.keyWindow?.addSubview(pictureView)
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.pictureView.alpha = 1
+                })
+            }
+        }
+        
+        
     }
     
     
-    
+    // MARK:点击大图图片
+    func PictureShowViewSelectIndex(_ index: NSInteger) {
+        
+        UIView.animate(withDuration: 0.35, animations: {
+            self.pictureView.alpha = 0
+        }) { (true) in
+            self.pictureView.removeFromSuperview()
+            self.pictureView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        }
+        
+        
+        
+    }
     
     
     

@@ -17,7 +17,10 @@ class SendBottomView: UIView {
     @IBOutlet weak var sendButton: UIButton!
     
     
-    
+    override func awakeFromNib() {
+        icon.isHidden = true
+        locationButton.isHidden = true
+    }
     
     
     
