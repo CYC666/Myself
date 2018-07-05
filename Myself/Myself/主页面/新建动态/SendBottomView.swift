@@ -18,8 +18,8 @@ class SendBottomView: UIView {
     
     
     override func awakeFromNib() {
-        icon.isHidden = true
-        locationButton.isHidden = true
+//        icon.isHidden = true
+//        locationButton.isHidden = true
     }
     
     

@@ -54,6 +54,9 @@ class Tool: NSObject {
     ///   - prise: 点赞数
     ///   - comment: 评论数
     ///   - tips: 标签
+    ///   - location: 定位
+    ///   - latitude: 维度
+    ///   - longitude: 经度
     /// - Returns: 是否插入成功
     class func insertCoreData(_ entityName : String,
                               _ nickName : String,
@@ -64,7 +67,10 @@ class Tool: NSObject {
                               _ imagesThumbPath : String,
                               _ prise : String,
                               _ comment : String,
-                              _ tips : String) -> Bool {
+                              _ tips : String,
+                              _ location : String,
+                              _ latitude : String,
+                              _ longitude : String) -> Bool {
         
         // 步骤一：获取总代理和托管对象总管
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -85,6 +91,9 @@ class Tool: NSObject {
         zone.setValue(prise, forKey: "prise")
         zone.setValue(comment, forKey: "comment")
         zone.setValue(tips, forKey: "tips")
+        zone.setValue(location, forKey: "location")
+        zone.setValue(latitude, forKey: "latitude")
+        zone.setValue(longitude, forKey: "longitude")
         
         // 步骤四：保存entity到托管对象中。如果保存失败，进行处理
         do {

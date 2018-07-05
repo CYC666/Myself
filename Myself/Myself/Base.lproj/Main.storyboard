@@ -21,15 +21,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="单色" translatesAutoresizingMaskIntoConstraints="NO" id="Aik-S6-9S5">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1242_2208" translatesAutoresizingMaskIntoConstraints="NO" id="77g-6e-sBq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.21568627450980393" green="0.73725490196078436" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="77g-6e-sBq" firstAttribute="leading" secondItem="68U-kP-UQ1" secondAttribute="leading" id="2DH-gW-jsU"/>
+                            <constraint firstItem="Aik-S6-9S5" firstAttribute="top" secondItem="68U-kP-UQ1" secondAttribute="top" id="39Q-tf-Oky"/>
+                            <constraint firstAttribute="bottom" secondItem="Aik-S6-9S5" secondAttribute="bottom" id="Cuc-bo-T28"/>
                             <constraint firstAttribute="bottom" secondItem="77g-6e-sBq" secondAttribute="bottom" id="OKO-w8-NdE"/>
+                            <constraint firstAttribute="trailing" secondItem="Aik-S6-9S5" secondAttribute="trailing" id="dGZ-HM-XPv"/>
                             <constraint firstItem="77g-6e-sBq" firstAttribute="top" secondItem="68U-kP-UQ1" secondAttribute="top" id="ilg-vL-TLq"/>
+                            <constraint firstItem="Aik-S6-9S5" firstAttribute="leading" secondItem="68U-kP-UQ1" secondAttribute="leading" id="pBf-63-Xmh"/>
                             <constraint firstAttribute="trailing" secondItem="77g-6e-sBq" secondAttribute="trailing" id="pmB-fB-xzi"/>
                         </constraints>
                     </view>
@@ -79,5 +86,6 @@
     </scenes>
     <resources>
         <image name="1242_2208" width="1242" height="2208"/>
+        <image name="单色" width="1242" height="2208"/>
     </resources>
 </document>

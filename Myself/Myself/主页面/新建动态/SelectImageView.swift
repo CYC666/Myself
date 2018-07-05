@@ -49,6 +49,8 @@ class SelectImageView: UICollectionView, UICollectionViewDelegate, UICollectionV
         self.dataSource = self
         self.register(UINib.init(nibName: "SelectImageCell", bundle: Bundle.main), forCellWithReuseIdentifier: "SelectImageCell")
         
+        let longPress : UILongPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(pressGestureAction(_:)))
+        self.addGestureRecognizer(longPress)
         
     }
     
@@ -79,10 +81,86 @@ class SelectImageView: UICollectionView, UICollectionViewDelegate, UICollectionV
     
     
     
+    // MARK:======================================长按拖动========================================
     
+    // MARK:长按
+    @objc func pressGestureAction(_ press : UILongPressGestureRecognizer) {
+        
+
+        if (self.indexPathForItem(at: press.location(in: self)) == nil) {
+            return
+        }
+        
+        let indexPath : NSIndexPath = self.indexPathForItem(at: press.location(in: self))! as NSIndexPath
+        if indexPath.row == dataArray.count - 1 {
+            // 最后一个不操作
+            return
+        }
+        
+        let cell = self.cellForItem(at: indexPath as IndexPath)!
+        
+        switch press.state {
+        case UIGestureRecognizerState.began:
+            
+            // 变大
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            })
+            
+            self.bringSubview(toFront: cell)
+            self.beginInteractiveMovementForItem(at: indexPath as IndexPath)
+            
+            
+            break
+            
+        case UIGestureRecognizerState.changed:
+            
+            // 变大
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+            })
+            
+            self.updateInteractiveMovementTargetPosition(press.location(in: self))
+            
+            break
+            
+        case UIGestureRecognizerState.ended:
+            
+            
+            // 变回原样
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            })
+            
+            self.endInteractiveMovement()
+            
+            break
+            
+        default:
+            
+            
+            // 变回原样
+            UIView.animate(withDuration: 0.1, animations: {
+                cell.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            })
+            self.cancelInteractiveMovement()
+        }
+        
+    }
+
+    // MARK:而移动代理方法
+    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
-    
-    
+    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let model = dataArray[sourceIndexPath.row]
+        dataArray.remove(at: sourceIndexPath.row)
+        dataArray.insert(model, at: destinationIndexPath.row)
+        
+        
+    }
     
     
     

@@ -8,16 +8,18 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
-class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectImageViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectImageViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate {
     
     var listTableView : UITableView = UITableView()
     var bottomView : SendBottomView = SendBottomView()
     var tipList : [String] = [String]()
     var imageArray : [SelectImageModel] = [SelectImageModel]()
+    var locationManager = CLLocationManager()
     
     
-    
+    // MARK:======================================生命========================================
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +64,54 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
     }
+    
+    
+    // MARK:打开定位
+    func loadLocationAction() {
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+    }
+    
+    // MARK:定位转城市名
+    func locationToCityAction(_ lat : Double, _ lon : Double, _ location : CLLocation) {
+        
+        CLGeocoder().reverseGeocodeLocation(location) { (placemark, error) in
+            
+            if error != nil {
+                return
+            }
+            
+            let mark : CLPlacemark = placemark?.last as! CLPlacemark
+            
+            //省
+            let State: String = (mark.addressDictionary! as NSDictionary).value(forKey: "State") as! String
+            //区
+            let SubLocality: NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "SubLocality") as! NSString
+            //城市
+            let City: String = (mark.addressDictionary! as NSDictionary).value(forKey: "City") as! String
+            //具体位置
+            let Name: NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "Name") as! NSString
+
+            // 更新按钮标题
+            self.bottomView.locationButton.setTitle(String.init(format: "%@%@%@%@", State, SubLocality, City, Name), for: UIControlState.normal)
+            
+            
+            //            //国家
+            //            let country: NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "Country") as! NSString
+            //            //国家编码
+            //            let CountryCode: NSString = (mark.addressDictionary! as NSDictionary).value(forKey: "CountryCode") as! NSString
+            //            //街道位置
+            //            let FormattedAddressLines: NSString = ((mark.addressDictionary! as NSDictionary).value(forKey: "FormattedAddressLines") as AnyObject).firstObject as! NSString
+            
+        }
+        
+    }
+    
+    
     // MARK:======================================按钮响应========================================
     
     // MARK:添加标签
@@ -146,7 +196,14 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         UIApplication.shared.keyWindow?.endEditing(true)
         
-        Tool.tips(self, "暂不开发添加定位")
+        if (button.titleLabel?.text?.elementsEqual("你在哪里?"))! {
+            // 打开定位
+            self.loadLocationAction()
+        } else {
+            button.setTitle("你在哪里?", for: UIControlState.normal)
+        }
+        
+        
         
     }
     
@@ -216,8 +273,20 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         let prise : String = "0"
         let comment : String = "0"
         let tips : String = tipList.joined(separator: "|")
+        var location : String = ""
+        var latitude : String = ""
+        var longitude : String = ""
+        if (bottomView.locationButton.titleLabel?.text?.elementsEqual("你在哪里?"))! {
+            location = ""
+            latitude = ""
+            longitude = ""
+        } else {
+            location = (bottomView.locationButton.titleLabel?.text)!
+            latitude = String.init(format: "%.6f", (locationManager.location?.coordinate.latitude)!)
+            longitude = String.init(format: "%.6f", (locationManager.location?.coordinate.longitude)!)
+        }
         
-        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, imagesThumbPath, prise, comment, tips)
+        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, imagesThumbPath, prise, comment, tips, location, latitude, longitude)
         
         if resule {
             self.navigationController?.popViewController(animated: true)
@@ -342,6 +411,27 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         picker.dismiss(animated: true, completion: {
             UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         })
+    }
+    
+    // MARK:定位代理方法
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let location : CLLocation = locations.last as! CLLocation
+        
+        // 判断是否为空
+        if location.horizontalAccuracy > 0 {
+            let lat : Double = Double(String.init(format: "%.1f", location.coordinate.latitude))!
+            let lon : Double = Double(String.init(format: "%.1f", location.coordinate.longitude))!
+            
+            // 停止定位
+            locationManager.stopUpdatingLocation()
+            
+            // 将定位转成城市名
+            self.locationToCityAction(lat, lon, location)
+            
+        }
+        
+        
     }
     
     

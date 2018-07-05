@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import MapKit
+import CoreLocation
 
 class ZoneListCell: UITableViewCell {
     
@@ -33,6 +35,11 @@ class ZoneListCell: UITableViewCell {
     @IBOutlet weak var tipButton1: UIButton!
     @IBOutlet weak var tipButton2: UIButton!
     @IBOutlet weak var tipButton3: UIButton!
+    
+    // 定位
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var locationHeight: NSLayoutConstraint!
+    
     
     // 互动区
     @IBOutlet weak var priseImage: UIImageView!
@@ -158,6 +165,25 @@ class ZoneListCell: UITableViewCell {
                 tipViewsHeight.constant = 0
             }
             
+            // 定位
+            if let location = _zoneModel?.value(forKey: "location") {
+                
+                if !(location as! String).elementsEqual("") {
+                    
+                    locationButton.setTitle(location as! String, for: UIControlState.normal)
+                    locationHeight.constant = 30
+                    
+                    locationButton.addTarget(self, action: #selector(locationButtonAction), for: UIControlEvents.touchUpInside)
+                    
+                } else {
+                    locationHeight.constant = 0
+                }
+                
+                
+            } else {
+                locationHeight.constant = 0
+            }
+            
             // 点赞
             if let prise = _zoneModel?.value(forKey: "prise") {
                 
@@ -240,7 +266,45 @@ class ZoneListCell: UITableViewCell {
         
     }
     
-    
+    // MARK:打开地图
+    @objc func locationButtonAction(_ button : UIButton) {
+        
+        var name = String()
+        var lat : Double = Double()
+        var lon : Double = Double()
+        
+        if let location = _zoneModel?.value(forKey: "location") {
+            
+            name = location as! String
+            
+        } else {
+            
+            name = ""
+        }
+        
+        if let latitude = _zoneModel?.value(forKey: "latitude") {
+            
+            lat = Double(latitude as! String)!
+            
+        } else {
+            
+            lat = 0
+        }
+        
+        if let longitude = _zoneModel?.value(forKey: "longitude") {
+            
+            lon = Double(longitude as! String)!
+            
+        } else {
+            
+            lon = 0
+        }
+        
+        // 在地图上打开
+        let location : MKMapItem = MKMapItem.init(placemark: MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: lat, longitude: lon), addressDictionary: nil))
+        location.name = name
+        MKMapItem.openMaps(with: [location], launchOptions: nil)
+    }
 
     
     

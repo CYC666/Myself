@@ -33,13 +33,6 @@
                         <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-z2-am7" userLabel="图片" customClass="SelectImageView" customModule="Myself" customModuleProvider="target">
-                        <rect key="frame" x="10" y="215" width="356" height="150"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="150" id="KSy-cW-Wv9"/>
-                        </constraints>
-                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fP5-d1-i2G" userLabel="标签 50">
                         <rect key="frame" x="0.0" y="365" width="376" height="50"/>
                         <subviews>
@@ -83,6 +76,13 @@
                             <constraint firstItem="Gv6-o0-Wj1" firstAttribute="centerY" secondItem="fP5-d1-i2G" secondAttribute="centerY" id="aHq-9t-HDZ"/>
                             <constraint firstItem="c40-cy-U58" firstAttribute="centerY" secondItem="fP5-d1-i2G" secondAttribute="centerY" id="cYI-TI-vTF"/>
                             <constraint firstAttribute="height" constant="50" id="ghf-Eq-QrU"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-z2-am7" userLabel="图片" customClass="SelectImageView" customModule="Myself" customModuleProvider="target">
+                        <rect key="frame" x="10" y="215" width="356" height="150"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="KSy-cW-Wv9"/>
                         </constraints>
                     </view>
                 </subviews>
