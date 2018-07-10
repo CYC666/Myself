@@ -33,6 +33,8 @@
 		171158A420E6212D00013C31 /* PictureShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A320E6212D00013C31 /* PictureShowView.swift */; };
 		171158A720E621FA00013C31 /* PictureShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A520E621FA00013C31 /* PictureShowCell.swift */; };
 		171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171158A620E621FA00013C31 /* PictureShowCell.xib */; };
+		17FA1D1020F4505B00990968 /* NoZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D0F20F4505B00990968 /* NoZoneView.swift */; };
+		17FA1D1220F4506300990968 /* NoZoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA1D1120F4506300990968 /* NoZoneView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		171158A320E6212D00013C31 /* PictureShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowView.swift; sourceTree = "<group>"; };
 		171158A520E621FA00013C31 /* PictureShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowCell.swift; sourceTree = "<group>"; };
 		171158A620E621FA00013C31 /* PictureShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureShowCell.xib; sourceTree = "<group>"; };
+		17FA1D0F20F4505B00990968 /* NoZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoZoneView.swift; sourceTree = "<group>"; };
+		17FA1D1120F4506300990968 /* NoZoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoZoneView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 				1711588720E3796700013C31 /* ZoneListCell.swift */,
 				1711588820E3796700013C31 /* ZoneListCell.xib */,
 				171158A020E6163500013C31 /* ZoneListImageView.swift */,
+				17FA1D0F20F4505B00990968 /* NoZoneView.swift */,
+				17FA1D1120F4506300990968 /* NoZoneView.xib */,
 				171158A220E6210F00013C31 /* 显示大图 */,
 				1711588B20E39A7B00013C31 /* 新建动态 */,
 			);
@@ -225,6 +231,7 @@
 				1711589D20E5C1D500013C31 /* SelectImageCell.xib in Resources */,
 				1711586020E32FE700013C31 /* LaunchScreen.storyboard in Resources */,
 				1711585D20E32FE700013C31 /* Assets.xcassets in Resources */,
+				17FA1D1220F4506300990968 /* NoZoneView.xib in Resources */,
 				1711589120E3DF4100013C31 /* SendCell.xib in Resources */,
 				1711588A20E3796700013C31 /* ZoneListCell.xib in Resources */,
 				1711585820E32FE700013C31 /* Main.storyboard in Resources */,
@@ -240,6 +247,7 @@
 			files = (
 				1711585B20E32FE700013C31 /* Myself.xcdatamodeld in Sources */,
 				171158A420E6212D00013C31 /* PictureShowView.swift in Sources */,
+				17FA1D1020F4505B00990968 /* NoZoneView.swift in Sources */,
 				1711585520E32FE700013C31 /* ViewController.swift in Sources */,
 				171158A720E621FA00013C31 /* PictureShowCell.swift in Sources */,
 				1711585320E32FE700013C31 /* AppDelegate.swift in Sources */,

@@ -13,6 +13,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var listTableView : UITableView = UITableView()
     var pictureView : PictureShowView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var noDataView : NoZoneView = NoZoneView()
     
     
     
@@ -49,17 +50,19 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         self.automaticallyAdjustsScrollViewInsets = false;
         
-        
-        
-        dataArray = Tool.searchCoredate("Zone")
-        listTableView.reloadData()
-
+        // 暂无动态的图
+        noDataView = Bundle.main.loadNibNamed("NoZoneView", owner: nil, options: nil)?.first as! NoZoneView
+        noDataView.frame = CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenHeight)
+        noDataView.addButton.addTarget(self, action: #selector(self.navButtonAcvtion(_:)), for: UIControlEvents.touchUpInside)
+        listTableView.addSubview(noDataView)
+        noDataView.alpha = 0
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
         dataArray = Tool.searchCoredate("Zone")
+        
         listTableView.reloadData()
         
     }
@@ -213,6 +216,17 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK:======================================代理方法========================================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        UIView.animate(withDuration: 0.2) {
+            if self.dataArray.count == 0 {
+                // 显示暂无动态
+                self.noDataView.alpha = 1
+            } else {
+                // 隐藏暂无动态
+                self.noDataView.alpha = 0
+            }
+        }
+        
         return dataArray.count
     }
     

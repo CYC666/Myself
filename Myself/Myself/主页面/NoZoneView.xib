@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NoZoneView" customModule="Myself" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="暂无" translatesAutoresizingMaskIntoConstraints="NO" id="cj7-rY-hZR">
+                    <rect key="frame" x="112" y="150" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="9Ds-Fp-izt"/>
+                        <constraint firstAttribute="width" constant="150" id="bS8-Pt-CgD"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daE-Gx-5iN">
+                    <rect key="frame" x="137.5" y="320" width="100" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="YlM-sI-D5X"/>
+                        <constraint firstAttribute="width" constant="100" id="kJY-zO-aHi"/>
+                    </constraints>
+                    <state key="normal" title="  去添加日记  ">
+                        <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="daE-Gx-5iN" firstAttribute="top" secondItem="cj7-rY-hZR" secondAttribute="bottom" constant="20" id="OVv-Ye-bp6"/>
+                <constraint firstItem="daE-Gx-5iN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Zqn-lZ-2a9"/>
+                <constraint firstItem="cj7-rY-hZR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="150" id="hD2-jC-MRg"/>
+                <constraint firstItem="cj7-rY-hZR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mGU-IJ-RLk"/>
+            </constraints>
+            <connections>
+                <outlet property="addButton" destination="daE-Gx-5iN" id="d7I-si-SVg"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="暂无" width="658" height="658"/>
+    </resources>
+</document>

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import CoreLocation
 
+
 class SendController: UIViewController, UITableViewDataSource, UITableViewDelegate, SelectImageViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, CLLocationManagerDelegate {
     
     var listTableView : UITableView = UITableView()
@@ -300,6 +301,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     // MARK:======================================代理方法========================================
+    // MARK:表视图代理方法
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -369,9 +371,9 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
     func SelectImageViewSelectIndex(_ index: NSInteger) {
         
         let model : SelectImageModel = imageArray[index]
-        
+
         if model.path.elementsEqual("添加") {
-            
+
             // 选取图片
             let picker = UIImagePickerController()
             picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
@@ -379,9 +381,14 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.present(picker, animated: true, completion: {
                 UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
             })
-            
-            
+
+
         }
+        
+    
+        
+        
+        
         
     }
     
