@@ -1,31 +1,33 @@
 //
-//  MainController.swift
+//  SearchController.swift
 //  Myself
 //
-//  Created by 曹老师 on 2018/6/27.
+//  Created by 曹老师 on 2018/7/10.
 //  Copyright © 2018年 曹奕程. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate {
+class SearchController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate {
     
     var listTableView : UITableView = UITableView()
     var pictureView : PictureShowView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     var noDataView : NoZoneView = NoZoneView()
+    var tipWord : String = String()
+    var keyWord : String = String()
+    
     
     
     
     var dataArray = [Any]()
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // 初始化
-        self.title = "Myself"
         self.view.backgroundColor = UIColor.white
         
         // 导航栏右边按钮
@@ -57,15 +59,16 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         listTableView.addSubview(noDataView)
         noDataView.alpha = 0
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         
-        dataArray = Tool.searchCoredate("Zone", "", "")
+        
+        // 搜索
+        dataArray = Tool.searchCoredate("Zone", tipWord, keyWord)
         
         listTableView.reloadData()
         
     }
+    
+    
     
     // MARK:======================================按钮响应========================================
     // MARK:新建动态
@@ -93,7 +96,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             do {
                 try managedObectContext.save()
-                self.dataArray = Tool.searchCoredate("Zone", "", "")
+                self.dataArray = Tool.searchCoredate("Zone", self.tipWord, self.keyWord)
                 self.listTableView.reloadData()
                 
             } catch let error as NSError {
@@ -112,17 +115,6 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
         
-
-    }
-    
-    // MARK:点击了标签
-    @objc func tipButtonAction(_ button : UIButton) {
-        
-        let ctrl : SearchController = SearchController()
-        ctrl.tipWord = "tips"
-        ctrl.keyWord = (button.titleLabel?.text)!
-        ctrl.title = button.titleLabel?.text
-        self.navigationController?.pushViewController(ctrl, animated: true);
         
     }
     
@@ -164,7 +156,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 do {
                     try managedObectContext.save()
-                    self.dataArray = Tool.searchCoredate("Zone", "", "")
+                    self.dataArray = Tool.searchCoredate("Zone", self.tipWord, self.keyWord)
                     self.listTableView.reloadData()
                     
                 } catch let error as NSError {
@@ -176,7 +168,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
         }
-
+        
         
     }
     
@@ -196,7 +188,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // 如果有照片那就分享照片
         if let imagesPath = model.value(forKey: "imagesPath") {
-
+            
             let images : [String] = (imagesPath as! String).components(separatedBy: "|")
             if images.count > 0 && !((images.first?.elementsEqual(""))!) {
                 
@@ -210,7 +202,7 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.present(ctrl, animated: true, completion: nil)
                 return
             }
-
+            
         }
         
         // 没有图片就分享文本
@@ -270,10 +262,6 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         cell.moreButton.tag = 200 + indexPath.row
         cell.moreButton.addTarget(self, action: #selector(deleteButtonAction), for: UIControlEvents.touchUpInside)
-        
-        cell.tipButton1.addTarget(self, action: #selector(tipButtonAction(_:)), for: UIControlEvents.touchUpInside)
-        cell.tipButton2.addTarget(self, action: #selector(tipButtonAction(_:)), for: UIControlEvents.touchUpInside)
-        cell.tipButton3.addTarget(self, action: #selector(tipButtonAction(_:)), for: UIControlEvents.touchUpInside)
         
         cell.priseButton.tag = 300 + indexPath.row
         cell.priseButton.addTarget(self, action: #selector(priseButtonAction), for: UIControlEvents.touchUpInside)
@@ -338,30 +326,6 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.pictureView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         }
         
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 }

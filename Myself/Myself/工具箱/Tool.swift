@@ -16,7 +16,7 @@ class Tool: NSObject {
     // MARK:查询表内容
     /// - Parameter entityName: 表名
     /// - Returns: 表内容数组
-    class func searchCoredate(_ entityName : String) -> [NSManagedObject] {
+    class func searchCoredate(_ entityName : String, _ Parameter : String, _ searchName : String) -> [NSManagedObject] {
     
         // 步骤一：获取总代理和托管对象总管
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -30,7 +30,27 @@ class Tool: NSObject {
             let fetchedResults = try managedObectContext.fetch(fetchRequest) as? [NSManagedObject]
             if let results = fetchedResults {
                 
-                return results
+                if Parameter.elementsEqual("") || searchName.elementsEqual("") {
+                    return results
+                } else {
+                    
+                    var tempArray : [NSManagedObject] = [NSManagedObject]()
+                    
+                    for model in results {
+                        
+                        if let tempStr : String = model.value(forKey: Parameter) as? String {
+                            
+                            if tempStr.elementsEqual(searchName) {
+                                tempArray.insert(model, at: 0)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    return tempArray
+                }
+                
                 
             } else {
                 return [NSManagedObject]()
@@ -41,6 +61,8 @@ class Tool: NSObject {
         }
     
     }
+    
+    
     
     // MARK:向表插入数据
     /// - Parameters:

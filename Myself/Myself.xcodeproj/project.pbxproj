@@ -35,6 +35,7 @@
 		171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171158A620E621FA00013C31 /* PictureShowCell.xib */; };
 		17FA1D1020F4505B00990968 /* NoZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D0F20F4505B00990968 /* NoZoneView.swift */; };
 		17FA1D1220F4506300990968 /* NoZoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA1D1120F4506300990968 /* NoZoneView.xib */; };
+		17FA1D1520F48BAD00990968 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D1420F48BAD00990968 /* SearchController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		171158A620E621FA00013C31 /* PictureShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureShowCell.xib; sourceTree = "<group>"; };
 		17FA1D0F20F4505B00990968 /* NoZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoZoneView.swift; sourceTree = "<group>"; };
 		17FA1D1120F4506300990968 /* NoZoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoZoneView.xib; sourceTree = "<group>"; };
+		17FA1D1420F48BAD00990968 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 				171158A020E6163500013C31 /* ZoneListImageView.swift */,
 				17FA1D0F20F4505B00990968 /* NoZoneView.swift */,
 				17FA1D1120F4506300990968 /* NoZoneView.xib */,
+				17FA1D1320F48B8B00990968 /* 搜索列表 */,
 				171158A220E6210F00013C31 /* 显示大图 */,
 				1711588B20E39A7B00013C31 /* 新建动态 */,
 			);
@@ -165,6 +168,14 @@
 				171158A620E621FA00013C31 /* PictureShowCell.xib */,
 			);
 			path = "显示大图";
+			sourceTree = "<group>";
+		};
+		17FA1D1320F48B8B00990968 /* 搜索列表 */ = {
+			isa = PBXGroup;
+			children = (
+				17FA1D1420F48BAD00990968 /* SearchController.swift */,
+			);
+			path = "搜索列表";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +267,7 @@
 				1711589320E3E7A600013C31 /* SendBottomView.swift in Sources */,
 				1711589920E5C1C100013C31 /* SelectImageView.swift in Sources */,
 				1711589020E3DF4100013C31 /* SendCell.swift in Sources */,
+				17FA1D1520F48BAD00990968 /* SearchController.swift in Sources */,
 				171158A120E6163500013C31 /* ZoneListImageView.swift in Sources */,
 				1711588320E36D0300013C31 /* MainController.swift in Sources */,
 				1711586820E3349800013C31 /* pch.swift in Sources */,
