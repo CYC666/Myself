@@ -67,12 +67,11 @@ class ZoneListCell: UITableViewCell {
             }
             
             // 头像
-//            if let headPath = _zoneModel?.value(forKey: "headPath") {
-//                headImage.image = UIImage.init(named: headPath as! String)
-//            } else {
-//                headImage.image = nil
-//            }
-            headImage.image = UIImage.init(named: "logo")
+            if let headPath = _zoneModel?.value(forKey: "headPath") {
+                headImage.image = UIImage.init(contentsOfFile: GetImagePath(headPath as! String))
+            } else {
+                headImage.image = UIImage.init(named: "logo")
+            }
             
             // 日期
             if let creatDate = _zoneModel?.value(forKey: "creatDate") {

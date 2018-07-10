@@ -32,6 +32,8 @@ let ImagePath : String = "/Documents/"
 func GetImagePath(_ path : String) -> String {
     return NSHomeDirectory().appending(ImagePath).appending(path)+".png"
 }
+let HeadImagePath : String = "HeadImagePath"    // 用户头像路径
+let UserName : String = "UserName"              // 用户昵称路径
 
 
 

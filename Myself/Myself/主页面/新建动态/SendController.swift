@@ -265,8 +265,8 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
         // 定义传参
-        let nickName : String = "曹老师_cGTR"
-        let headPath : String = ""
+        let nickName : String = UserDefaults.value(forKey: UserName) as! String
+        let headPath : String = HeadImagePath
         let creatDate : String = String.init(format: "%ld", time)
         let content : String = cell.textView.text
         let imagesPath : String = images.joined(separator: "|")

@@ -33,9 +33,11 @@
 		171158A420E6212D00013C31 /* PictureShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A320E6212D00013C31 /* PictureShowView.swift */; };
 		171158A720E621FA00013C31 /* PictureShowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171158A520E621FA00013C31 /* PictureShowCell.swift */; };
 		171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171158A620E621FA00013C31 /* PictureShowCell.xib */; };
+		173B0BBD20F49A7100A698FE /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 173B0BBC20F49A7100A698FE /* UserInfoView.xib */; };
 		17FA1D1020F4505B00990968 /* NoZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D0F20F4505B00990968 /* NoZoneView.swift */; };
 		17FA1D1220F4506300990968 /* NoZoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17FA1D1120F4506300990968 /* NoZoneView.xib */; };
 		17FA1D1520F48BAD00990968 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D1420F48BAD00990968 /* SearchController.swift */; };
+		17FA1D1820F49A0B00990968 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA1D1720F49A0B00990968 /* UserInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,9 +70,11 @@
 		171158A320E6212D00013C31 /* PictureShowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowView.swift; sourceTree = "<group>"; };
 		171158A520E621FA00013C31 /* PictureShowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureShowCell.swift; sourceTree = "<group>"; };
 		171158A620E621FA00013C31 /* PictureShowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureShowCell.xib; sourceTree = "<group>"; };
+		173B0BBC20F49A7100A698FE /* UserInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
 		17FA1D0F20F4505B00990968 /* NoZoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoZoneView.swift; sourceTree = "<group>"; };
 		17FA1D1120F4506300990968 /* NoZoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoZoneView.xib; sourceTree = "<group>"; };
 		17FA1D1420F48BAD00990968 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		17FA1D1720F49A0B00990968 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 				171158A020E6163500013C31 /* ZoneListImageView.swift */,
 				17FA1D0F20F4505B00990968 /* NoZoneView.swift */,
 				17FA1D1120F4506300990968 /* NoZoneView.xib */,
+				17FA1D1620F499E900990968 /* 个人信息页 */,
 				17FA1D1320F48B8B00990968 /* 搜索列表 */,
 				171158A220E6210F00013C31 /* 显示大图 */,
 				1711588B20E39A7B00013C31 /* 新建动态 */,
@@ -176,6 +181,15 @@
 				17FA1D1420F48BAD00990968 /* SearchController.swift */,
 			);
 			path = "搜索列表";
+			sourceTree = "<group>";
+		};
+		17FA1D1620F499E900990968 /* 个人信息页 */ = {
+			isa = PBXGroup;
+			children = (
+				17FA1D1720F49A0B00990968 /* UserInfoView.swift */,
+				173B0BBC20F49A7100A698FE /* UserInfoView.xib */,
+			);
+			path = "个人信息页";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1711589520E3E7AD00013C31 /* SendBottomView.xib in Resources */,
+				173B0BBD20F49A7100A698FE /* UserInfoView.xib in Resources */,
 				171158A820E621FA00013C31 /* PictureShowCell.xib in Resources */,
 				1711589D20E5C1D500013C31 /* SelectImageCell.xib in Resources */,
 				1711586020E32FE700013C31 /* LaunchScreen.storyboard in Resources */,
@@ -271,6 +286,7 @@
 				171158A120E6163500013C31 /* ZoneListImageView.swift in Sources */,
 				1711588320E36D0300013C31 /* MainController.swift in Sources */,
 				1711586820E3349800013C31 /* pch.swift in Sources */,
+				17FA1D1820F49A0B00990968 /* UserInfoView.swift in Sources */,
 				1711586C20E3400400013C31 /* GuideController.swift in Sources */,
 				1711588920E3796700013C31 /* ZoneListCell.swift in Sources */,
 				1711588D20E39AA400013C31 /* SendController.swift in Sources */,

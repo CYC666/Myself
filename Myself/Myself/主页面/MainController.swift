@@ -9,14 +9,13 @@
 import UIKit
 import CoreData
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate {
+class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate, UITextFieldDelegate {
     
     var listTableView : UITableView = UITableView()
     var pictureView : PictureShowView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
     var noDataView : NoZoneView = NoZoneView()
-    
-    
-    
+    var infoView : UserInfoView = UserInfoView()
+
     var dataArray = [Any]()
     
     
@@ -28,8 +27,14 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         self.title = "Myself"
         self.view.backgroundColor = UIColor.white
         
-        // 导航栏右边按钮
+        // 导航栏按钮
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage.init(named: "白色加号"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.navButtonAcvtion(_:)))
+        
+        // 侧滑显示个人信息视图
+        let leftSwipe : UISwipeGestureRecognizer = UISwipeGestureRecognizer.init(target: self, action: #selector(infoAction(_:)))
+        leftSwipe.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(leftSwipe)
+        
         
         // 表视图
         listTableView = UITableView(frame: CGRect(x: 0, y: Nav_Height, width: kScreenWidth, height: kScreenHeight - Nav_Height - (TabBar_Height - 49)), style: UITableViewStyle.plain)
@@ -57,6 +62,15 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         listTableView.addSubview(noDataView)
         noDataView.alpha = 0
         
+        // 个人信息页
+        infoView = Bundle.main.loadNibNamed("UserInfoView", owner: nil, options: nil)?.first as! UserInfoView
+        infoView.frame = CGRect(x: -kScreenWidth, y: 0, width: kScreenWidth, height: kScreenHeight)
+        infoView.backButton.addTarget(self, action: #selector(self.infoBackButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        infoView.headButton.addTarget(self, action: #selector(self.headButtonAction(_:)), for: UIControlEvents.touchUpInside)
+        infoView.nameField.delegate = self
+        UIApplication.shared.keyWindow?.addSubview(infoView)
+        infoView.backButton.alpha = 0;
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,6 +82,37 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     // MARK:======================================按钮响应========================================
+    // MARK:个人信息
+    @objc func infoAction(_ swipe : UISwipeGestureRecognizer) {
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoView.transform = CGAffineTransform.init(translationX: kScreenWidth, y: 0)
+        }) { (true) in
+            
+            UIView.animate(withDuration: 0.2) {
+                self.infoView.backButton.alpha = 1
+            }
+        }
+        
+    }
+    
+    // MARK:退出个人信息
+    @objc func infoBackButtonAction(_ button : UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.infoView.transform = CGAffineTransform.init(translationX: 0, y: 0)
+        }) { (true) in
+            
+            UIView.animate(withDuration: 0.2) {
+                self.infoView.backButton.alpha = 0
+            }
+        }
+    }
+    
+    // MARK:点击个人信息头像
+    @objc func headButtonAction(_ button : UIButton) {
+        
+    }
+    
     // MARK:新建动态
     @objc func navButtonAcvtion(_ button: UIButton) {
         
@@ -325,6 +370,20 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         
+    }
+    
+    // MARK:个人信息修改昵称
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        UIApplication.shared.keyWindow?.endEditing(true)
+        
+        if (textField.text?.elementsEqual(""))! {
+            textField.text = "曹老师_cGTR"
+        }
+        
+        UserDefaults.standard.setValue(textField.text, forKey: UserName)
+        
+        return true
     }
     
     
