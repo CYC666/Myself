@@ -60,15 +60,15 @@ class ZoneListCell: UITableViewCell {
             _zoneModel = newValue
             
             // 昵称
-            if let nickName = _zoneModel?.value(forKey: "nickName") {
-                nameLabel.text = nickName as? String
+            if (UserDefaults.standard.value(forKey: UserName) != nil) {
+                nameLabel.text = UserDefaults.standard.value(forKey: UserName) as? String
             } else {
                 nameLabel.text = ""
             }
             
             // 头像
-            if let headPath = _zoneModel?.value(forKey: "headPath") {
-                headImage.image = UIImage.init(contentsOfFile: GetImagePath(headPath as! String))
+            if let image = UIImage.init(contentsOfFile: GetImagePath(HeadImagePath)) {
+                headImage.image = image
             } else {
                 headImage.image = UIImage.init(named: "logo")
             }

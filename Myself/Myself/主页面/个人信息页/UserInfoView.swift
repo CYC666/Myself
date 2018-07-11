@@ -20,7 +20,7 @@ class UserInfoView: UIView {
     
     override func awakeFromNib() {
         
-        mainView.layer.cornerRadius = (kScreenWidth - 20 * 2) * 0.5
+        mainView.layer.cornerRadius = (kScreenWidth - 50 * 2) * 0.5
         
         // 初始化用户数据
         if UserDefaults.standard.object(forKey: UserName) != nil {
