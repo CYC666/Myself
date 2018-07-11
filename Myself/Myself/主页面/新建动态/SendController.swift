@@ -265,7 +265,7 @@ class SendController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         
         // 定义传参
-        let nickName : String = UserDefaults.value(forKey: UserName) as! String
+        let nickName : String = UserDefaults.standard.value(forKey: UserName) as! String
         let headPath : String = HeadImagePath
         let creatDate : String = String.init(format: "%ld", time)
         let content : String = cell.textView.text

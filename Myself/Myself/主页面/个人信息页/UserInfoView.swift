@@ -12,20 +12,22 @@ class UserInfoView: UIView {
 
     
     
-    @IBOutlet weak var right: NSLayoutConstraint!
+    
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var headButton: UIButton!
     
     override func awakeFromNib() {
         
+        mainView.layer.cornerRadius = (kScreenWidth - 20 * 2) * 0.5
         
         // 初始化用户数据
-//        if let value = UserDefaults.value(forKey: UserName) {
-//            nameField.text = value as? String
-//        } else {
-//            UserDefaults.setValue("曹老师_cGTR", forKey: UserName)
-//        }
+        if UserDefaults.standard.object(forKey: UserName) != nil {
+            nameField.text = UserDefaults.standard.value(forKey: UserName) as? String
+        } else {
+            UserDefaults.standard.setValue("曹老师_cGTR", forKey: UserName)
+        }
         
         let path : String = GetImagePath(HeadImagePath)
         if let image : UIImage = UIImage.init(contentsOfFile: path) {

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate, UITextFieldDelegate {
+class MainController: UIViewController, UITableViewDataSource, UITableViewDelegate, ZoneListImageViewDelegate, PictureShowViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var listTableView : UITableView = UITableView()
     var pictureView : PictureShowView = PictureShowView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -98,18 +98,34 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK:退出个人信息
     @objc func infoBackButtonAction(_ button : UIButton) {
+        
+        UIApplication.shared.keyWindow?.endEditing(true)
         UIView.animate(withDuration: 0.2, animations: {
-            self.infoView.transform = CGAffineTransform.init(translationX: 0, y: 0)
+            self.infoView.backButton.alpha = 0
         }) { (true) in
             
-            UIView.animate(withDuration: 0.2) {
-                self.infoView.backButton.alpha = 0
-            }
+            UIView.animate(withDuration: 0.2, animations: {
+                self.infoView.transform = CGAffineTransform.init(translationX: kScreenWidth * 2, y: 0)
+            }, completion: { (true) in
+                self.infoView.transform = CGAffineTransform.init(translationX: 0, y: 0)
+            })
+            
         }
     }
     
     // MARK:点击个人信息头像
     @objc func headButtonAction(_ button : UIButton) {
+        
+        UIApplication.shared.keyWindow?.endEditing(true)
+        
+        // 选取图片
+        let picker = UIImagePickerController()
+        picker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        picker.delegate = self
+        picker.allowsEditing = true
+        self.present(picker, animated: true, completion: {
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.default, animated: true)
+        })
         
     }
     
@@ -401,7 +417,25 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
+    // MARK:选图控制器代理方法
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        let image = info[UIImagePickerControllerEditedImage]
+        
+        // 头像存到沙盒
+        Tool.saveImage(image: image as! UIImage, scale: 1, imageName: HeadImagePath)
+        infoView.headButton.setImage(image as! UIImage, for: UIControlState.normal)
+        
+        picker.dismiss(animated: true, completion: {
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        })
+    }
     
+    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: {
+            UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
+        })
+    }
     
     
     
