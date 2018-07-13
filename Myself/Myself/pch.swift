@@ -35,5 +35,5 @@ func GetImagePath(_ path : String) -> String {
 let HeadImagePath : String = "HeadImagePath"    // 用户头像路径
 let UserName : String = "UserName"              // 用户昵称路径
 
-
+let BASE_URL : String = ""
 

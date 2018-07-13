@@ -171,8 +171,35 @@ class Tool: NSObject {
     }
     
     
-    
-    
+    // MARK:======================================网络请求========================================
+    /// 发送POST请求
+    ///
+    /// - Parameters:
+    ///   - method: 请求方法名
+    ///   - parameter: 请求参数列表
+    ///   - success: 成功回调
+    ///   - failure: 失败回调
+    class func Post(_ method : String,
+                    _ parameter : Dictionary<String,String>,
+                    _ success : (_ respondObject : Any) -> (),
+                    _ failure : (_ respondObject : Any) -> ()) {
+        
+        let urlString : String = String.init(format: "%@%@", BASE_URL, method)
+        let url : URL = URL.init(string: urlString)!
+        let request : NSMutableURLRequest = NSMutableURLRequest.init(url: url)
+        request.httpMethod = "POST"
+        
+//        var jsonString = ""
+//        var error = NSError()
+//        if let jsonData : NSData = try? JSONSerialization.data(withJSONObject: parameter, options: .prettyPrinted) as! [String : Any] {
+//            
+//            jsonString = String.init(data: jsonData, encoding: NSUTF8StringEncoding)
+//            
+//        }
+        
+        
+        
+    }
     
     
     

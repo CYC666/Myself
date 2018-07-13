@@ -71,6 +71,10 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         UIApplication.shared.keyWindow?.addSubview(infoView)
         infoView.backButton.alpha = 0;
         
+        
+        // 如果没有数据，插入欢迎动态
+        self.welcomeAction()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +82,72 @@ class MainController: UIViewController, UITableViewDataSource, UITableViewDelega
         dataArray = Tool.searchCoredate("Zone", "", "")
         
         listTableView.reloadData()
+        
+    }
+    
+    // MARK:检测是否有动态，没有则插入欢迎动态
+    func welcomeAction() {
+        
+        let list = Tool.searchCoredate("Zone", "", "")
+        if list.count != 0 {
+            return
+        }
+        
+        // 时间戳
+        let time : NSInteger = NSInteger(NSDate().timeIntervalSince1970)
+        
+        // 图片
+        var images : [String] = [String]()
+        var thumbImages : [String] = [String]()
+        for i in 0...8  {
+            
+            let timeString = Tool.getCurrentDateString()
+            let imagePath = String.init(format: "%@_%ld", timeString, i)
+            let imageThumbPath = String.init(format: "thumb_%@_%ld", timeString, i)
+            
+            // 将图片保存到沙盒，成功则继续，否则返回，清空图片路径
+            let image : UIImage = UIImage.init(named: String.init(format: "timg-%ld", i))!
+            if Tool.saveImage(image: image, scale: 1, imageName: imagePath) {
+                images.append(imagePath)
+            } else {
+                images.removeAll()
+                return
+            }
+            if Tool.saveImage(image: image, scale: 0.3, imageName: imageThumbPath) {
+                thumbImages.append(imageThumbPath)
+            } else {
+                thumbImages.removeAll()
+                return
+            }
+            
+            
+            
+        }
+        
+
+        
+        // 定义传参
+        let nickName : String = UserDefaults.standard.value(forKey: UserName) as! String
+        let headPath : String = HeadImagePath
+        let creatDate : String = String.init(format: "%ld", time)
+        let content : String = "欢迎来到Myself."
+        let imagesPath : String = images.joined(separator: "|")
+        let imagesThumbPath : String = thumbImages.joined(separator: "|")
+        let prise : String = "0"
+        let comment : String = "0"
+        let tips : String = ""
+        let location : String = ""
+        let latitude : String = ""
+        let longitude : String = ""
+        
+        
+        let resule : Bool = Tool.insertCoreData("Zone", nickName, headPath, creatDate, content, imagesPath, imagesThumbPath, prise, comment, tips, location, latitude, longitude)
+        
+        if resule {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            Tool.tips(self, "添加动态失败")
+        }
         
     }
     
